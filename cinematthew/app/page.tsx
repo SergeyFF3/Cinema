@@ -1,6 +1,14 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
+
+import { getProduct } from "@/services";
+import { useEffect, useState } from "react";
 
 export default function Home() {
-  return <h1>Cinema</h1>;
+  const [movie, setMovie] = useState([]);
+
+  useEffect(() => {
+    getProduct().then((res) => setMovie(res));
+  }, []);
+
+  return <h1>Cinema 123</h1>;
 }
