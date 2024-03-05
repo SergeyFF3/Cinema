@@ -1,10 +1,13 @@
 import { filmsStore } from 'src/pages/FilmsPage';
+import { serialsStore } from 'src/pages/SerialsPage';
 
 export class RootStore {
   filmsStore: filmsStore;
+  serialsStore: serialsStore;
 
   constructor() {
     this.filmsStore = new filmsStore();
+    this.serialsStore = new serialsStore();
   }
 }
 
