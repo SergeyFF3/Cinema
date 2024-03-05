@@ -1,10 +1,10 @@
-import { movieStore } from 'src/pages/MainPage';
+import { filmsStore } from 'src/pages/FilmsPage';
 
 export class RootStore {
-  movieStore: movieStore;
+  filmsStore: filmsStore;
 
   constructor() {
-    this.movieStore = new movieStore();
+    this.filmsStore = new filmsStore();
   }
 }
 

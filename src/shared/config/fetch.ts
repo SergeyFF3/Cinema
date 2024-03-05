@@ -13,6 +13,5 @@ export const request = async (url: string) => {
     if (e instanceof Error) {
       console.log(e.message);
     }
-    throw e;
   }
 };
