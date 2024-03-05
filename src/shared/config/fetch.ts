@@ -1,4 +1,4 @@
-export const request = async (url: string) => {
+export const fetchData = async (url: string) => {
   try {
     const response = await fetch(url, {
       headers: { 'X-API-KEY': import.meta.env.VITE_REACT_APP_API_TOKEN },
