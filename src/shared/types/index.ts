@@ -8,6 +8,7 @@ interface IOnlyNames {
 }
 
 export interface ICinemaProps {
+  id: number;
   name: string;
   alternativeName: string;
   rating: IRating;
