@@ -1,0 +1,14 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 10px;
+  margin-inline: auto;
+}
+
+.wrapper > li {
+  transition: 0.3s ease;
+}
+
+.wrapper:hover > li:not(:hover) {
+  opacity: 0.5;
+}

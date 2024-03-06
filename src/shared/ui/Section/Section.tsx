@@ -9,8 +9,10 @@ interface ISectionProps {
 
 export const Section: FC<ISectionProps> = ({ title, children }) => (
   <section>
-    <h1 className={styles.title}>
-      <Typography>{title}</Typography>
+    <h1 className={styles.label}>
+      <Typography fontSize="20px" className={styles.title}>
+        {title}
+      </Typography>
     </h1>
     {children}
   </section>

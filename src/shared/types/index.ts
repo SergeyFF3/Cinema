@@ -13,7 +13,7 @@ export interface ICinemaProps {
   alternativeName: string;
   rating: IRating;
   description: string;
-  year: string;
+  year: number;
   movieLength: number;
   countries: IOnlyNames[];
   genres: IOnlyNames[];

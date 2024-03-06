@@ -1,0 +1,10 @@
+.label {
+  width: max-content;
+  background: mediumpurple;
+  border-radius: 4px;
+}
+
+.year {
+  padding: 0px 6px;
+  color: #fff;
+}

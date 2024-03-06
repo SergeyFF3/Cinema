@@ -76,3 +76,8 @@ h6 {
   font-size: inherit;
   font-weight: 400;
 }
+
+body {
+  height: 100dvh;
+  background: rgba(0, 0, 0, 0.979);
+}
