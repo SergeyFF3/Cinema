@@ -1,1 +1,0 @@
-export { AboutCinema } from './AboutCinema';

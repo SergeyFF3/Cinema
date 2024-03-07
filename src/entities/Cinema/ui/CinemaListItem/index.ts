@@ -1,1 +1,0 @@
-export { CinemaListItem } from './CinemaListItem';

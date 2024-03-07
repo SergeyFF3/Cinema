@@ -3,6 +3,10 @@ interface IRating {
   imdb: number;
 }
 
+export interface ITrailer {
+  url: string;
+}
+
 export interface IOnlyNames {
   name: string;
 }
@@ -14,13 +18,15 @@ export interface ICinemaProps {
   rating: IRating;
   description: string;
   year: number;
-  movieLength: number;
   countries: IOnlyNames[];
   genres: IOnlyNames[];
   poster: {
     url: string;
   };
   ageRating: number;
+  videos: {
+    trailers: ITrailer[];
+  };
 }
 
 export interface ICinemaList {
