@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { ICinemaProps } from 'src/shared/types';
-import { CinemaListItem } from '../CinemaListItem';
+import { CinemaListItem } from '../CinemaListItem/CinemaListItem';
 import styles from './CinemaList.module.css';
 
 interface ICinemaListProps {

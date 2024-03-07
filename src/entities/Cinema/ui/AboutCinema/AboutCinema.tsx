@@ -13,7 +13,6 @@ export const AboutCinema: FC<ICinemaProps> = (props) => {
     countries,
     description,
     genres,
-    movieLength,
     name,
     poster,
     rating,
