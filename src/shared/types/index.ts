@@ -3,7 +3,7 @@ interface IRating {
   imdb: number;
 }
 
-interface IOnlyNames {
+export interface IOnlyNames {
   name: string;
 }
 
@@ -20,6 +20,7 @@ export interface ICinemaProps {
   poster: {
     url: string;
   };
+  ageRating: number;
 }
 
 export interface ICinemaList {

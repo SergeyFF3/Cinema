@@ -4,7 +4,7 @@ import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { useRootData } from 'src/shared/lib/hooks/useRootData';
 import { ICinemaProps } from 'src/shared/types';
-import { Rating } from 'src/shared/ui/Rating';
+import { CinemaRating } from 'src/shared/ui/CinemaRating';
 import { Year } from 'src/shared/ui/Year';
 import styles from './CinemaListItem.module.css';
 
@@ -37,8 +37,16 @@ export const CinemaListItem: FC<ICinemaListItemProps> = ({
                 {cinema.name}
               </Typography>
               <div className={styles.rating}>
-                <Rating name="кп" rating={cinema.rating.kp} color="#f60" />
-                <Rating name="imdb" rating={cinema.rating.imdb} color="#fc0" />
+                <CinemaRating
+                  name="кп"
+                  rating={cinema.rating.kp}
+                  color="#f60"
+                />
+                <CinemaRating
+                  name="imdb"
+                  rating={cinema.rating.imdb}
+                  color="#fc0"
+                />
               </div>
             </div>
           </div>

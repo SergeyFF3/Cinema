@@ -1,0 +1,1 @@
+export { CinemaRating } from './CinemaRating';

@@ -1,0 +1,1 @@
+export { AboutCinema } from './AboutCinema';

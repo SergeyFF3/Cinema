@@ -1,4 +1,6 @@
 .label {
+  position: relative;
+  display: block;
   width: max-content;
   background: mediumpurple;
   border-radius: 4px;

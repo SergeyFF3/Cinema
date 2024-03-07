@@ -1,0 +1,12 @@
+.label {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.list {
+  display: flex;
+}
+
+.item {
+  margin-right: 5px;
+}
