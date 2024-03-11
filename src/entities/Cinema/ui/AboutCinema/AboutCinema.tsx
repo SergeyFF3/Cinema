@@ -18,6 +18,7 @@ export const AboutCinema: FC<ICinemaProps> = (props) => {
     rating,
     year,
   } = props;
+
   const cinemaTitle = `${name} (${year}) смотреть онлайн`;
 
   return (
