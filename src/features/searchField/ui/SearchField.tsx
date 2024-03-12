@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 export const SearchField = observer(() => {
   const navigate = useNavigate();
-  const { searchCinemaByName } = useRootData((store) => store.findCinemaStore);
+  const { searchMovieByName } = useRootData((store) => store.searchMovieStore);
   const { changeSearchValue, removeValue, searchValue } = useRootData(
     (store) => store.searchStore,
   );
@@ -15,7 +15,7 @@ export const SearchField = observer(() => {
   const onKeyDownEnter = (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (e.key === 'Enter') {
       e.preventDefault();
-      searchCinemaByName(searchValue);
+      searchMovieByName(searchValue);
       navigate('/search-result');
     }
   };

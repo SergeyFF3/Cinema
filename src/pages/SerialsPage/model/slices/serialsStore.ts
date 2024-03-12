@@ -1,9 +1,9 @@
 import { makeAutoObservable } from 'mobx';
-import { ICinemaProps } from 'src/shared/types';
+import { IMovieProps } from 'src/shared/types';
 import serialsService from '../services/serialsService';
 
 export class serialsStore {
-  serialsList: ICinemaProps[] = [];
+  serialsList: IMovieProps[] = [];
 
   constructor() {
     makeAutoObservable(this);

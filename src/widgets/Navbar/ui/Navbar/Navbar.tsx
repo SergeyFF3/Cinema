@@ -1,18 +1,18 @@
 import { Button, Typography } from '@mui/material';
 import { observer } from 'mobx-react';
 import { Link, useNavigate } from 'react-router-dom';
-import { SearchField } from 'src/features/SearchField';
+import { SearchField } from 'src/features/searchField';
 import { useRootData } from 'src/shared/lib/hooks/useRootData';
 import { nvabarListItems } from '../../model/selectors/getNavbarItems';
 import styles from './Navbar.module.css';
 
 export const Navbar = observer(() => {
-  const { searchCinemaByName } = useRootData((store) => store.findCinemaStore);
+  const { searchMovieByName } = useRootData((store) => store.searchMovieStore);
   const { searchValue } = useRootData((store) => store.searchStore);
   const navigate = useNavigate();
 
   const redirectToSearchPage = () => {
-    searchCinemaByName(searchValue);
+    searchMovieByName(searchValue);
     navigate('/search-result');
   };
 

@@ -1,12 +1,12 @@
 import { Typography } from '@mui/material';
 import { FC } from 'react';
-import { ICinemaProps } from 'src/shared/types';
+import { IMovieProps } from 'src/shared/types';
 import { FlistRow } from 'src/shared/ui/FlistRow';
-import { CinemaRating } from 'src/shared/ui/CinemaRating';
-import styles from './AboutCinema.module.css';
+import { MovieRating } from 'src/shared/ui/MovieRating';
+import styles from './AboutMovie.module.css';
 import { Year } from 'src/shared/ui/Year';
 
-export const AboutCinema: FC<ICinemaProps> = (props) => {
+export const AboutMovie: FC<IMovieProps> = (props) => {
   const {
     ageRating,
     alternativeName,
@@ -19,7 +19,7 @@ export const AboutCinema: FC<ICinemaProps> = (props) => {
     year,
   } = props;
 
-  const cinemaTitle = `${name} (${year}) смотреть онлайн`;
+  const movieTitle = `${name} (${year}) смотреть онлайн`;
 
   return (
     <section className={styles.wrapper}>
@@ -31,7 +31,7 @@ export const AboutCinema: FC<ICinemaProps> = (props) => {
       </div>
       <div className={styles.column}>
         <Typography fontSize="20px" color="gray">
-          {cinemaTitle}
+          {movieTitle}
         </Typography>
         <div className={styles.description}>
           <Typography color="white">{description}</Typography>
@@ -39,9 +39,9 @@ export const AboutCinema: FC<ICinemaProps> = (props) => {
         <div className={styles.rating}>
           <span style={{ display: 'flex' }}>
             <span style={{ marginRight: '5px' }}>
-              <CinemaRating name="кп" rating={rating.kp} color="#f60" />
+              <MovieRating name="кп" rating={rating.kp} color="#f60" />
             </span>
-            <CinemaRating name="imdb" rating={rating.imdb} color="#fc0" />
+            <MovieRating name="imdb" rating={rating.imdb} color="#fc0" />
           </span>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <FlistRow name="Рекомендуемый возраст" value={ageRating} />

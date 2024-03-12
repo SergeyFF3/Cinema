@@ -7,7 +7,7 @@ interface IRatingProps {
   color: string;
 }
 
-export const CinemaRating: FC<IRatingProps> = ({ name, rating, color }) => {
+export const MovieRating: FC<IRatingProps> = ({ name, rating, color }) => {
   const number = Math.floor(rating * 10) / 10;
 
   if (!rating) return null;

@@ -11,7 +11,7 @@ export interface IOnlyNames {
   name: string;
 }
 
-export interface ICinemaProps {
+export interface IMovieProps {
   id: number;
   name: string;
   alternativeName: string;
@@ -29,6 +29,6 @@ export interface ICinemaProps {
   };
 }
 
-export interface ICinemaList {
-  docs: ICinemaProps[];
+export interface IMovieList {
+  docs: IMovieProps[];
 }

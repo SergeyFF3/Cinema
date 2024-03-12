@@ -3,48 +3,41 @@ import { Typography } from '@mui/material';
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { useRootData } from 'src/shared/lib/hooks/useRootData';
-import { ICinemaProps } from 'src/shared/types';
-import { CinemaRating } from 'src/shared/ui/CinemaRating';
+import { IMovieProps } from 'src/shared/types';
+import { MovieRating } from 'src/shared/ui/MovieRating';
 import { Year } from 'src/shared/ui/Year';
-import styles from './CinemaListItem.module.css';
+import styles from './MovieListItem.module.css';
 
-interface ICinemaListItemProps {
-  cinema: ICinemaProps;
+interface IMovieListItemProps {
+  movie: IMovieProps;
   category: string;
 }
 
-export const CinemaListItem: FC<ICinemaListItemProps> = ({
-  category,
-  cinema,
-}) => {
-  const { getCinemaById } = useRootData((store) => store.cinemaStore);
+export const MovieListItem: FC<IMovieListItemProps> = ({ category, movie }) => {
+  const { getMovieById } = useRootData((store) => store.movieStore);
 
   return (
-    <li onClick={() => getCinemaById(String(cinema.id))}>
-      <Link to={`/${category}/${cinema.id}`}>
+    <li onClick={() => getMovieById(String(movie.id))}>
+      <Link to={`/${category}/${movie.id}`}>
         <div className={styles.wrapper}>
           <div className={styles.imageWrapper}>
             <img
-              src={cinema.poster.url}
-              alt={cinema.name}
+              src={movie.poster.url}
+              alt={movie.name}
               className={styles.image}
             />
           </div>
           <div className={styles.content}>
-            <Year year={cinema.year} />
+            <Year year={movie.year} />
             <div>
               <Typography fontSize="16px" className={styles.text}>
-                {cinema.name}
+                {movie.name}
               </Typography>
               <div className={styles.rating}>
-                <CinemaRating
-                  name="кп"
-                  rating={cinema.rating.kp}
-                  color="#f60"
-                />
-                <CinemaRating
+                <MovieRating name="кп" rating={movie.rating.kp} color="#f60" />
+                <MovieRating
                   name="imdb"
-                  rating={cinema.rating.imdb}
+                  rating={movie.rating.imdb}
                   color="#fc0"
                 />
               </div>

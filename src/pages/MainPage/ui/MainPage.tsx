@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react';
 import { useEffect } from 'react';
-import { CinemaList } from 'src/entities/Cinema';
+import { MovieList } from 'src/entities/Movie';
 import { useRootData } from 'src/shared/lib/hooks/useRootData';
 import { Section } from 'src/shared/ui/Section';
 
@@ -14,7 +14,7 @@ const MainPage = observer(() => {
   return (
     <>
       <Section title="Фильмы">
-        <CinemaList cinemaList={filmsList} category="films" />
+        <MovieList movieList={filmsList} category="films" />
       </Section>
     </>
   );

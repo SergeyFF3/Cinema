@@ -1,9 +1,9 @@
 import { makeAutoObservable } from 'mobx';
-import { ICinemaProps } from 'src/shared/types';
+import { IMovieProps } from 'src/shared/types';
 import filmsService from '../services/filmsService';
 
 export class filmsStore {
-  filmsList: ICinemaProps[] = [];
+  filmsList: IMovieProps[] = [];
 
   constructor() {
     makeAutoObservable(this);

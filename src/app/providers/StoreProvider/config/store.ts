@@ -1,7 +1,8 @@
 import { makeAutoObservable } from 'mobx';
-import { cinemaStore } from 'src/entities/Cinema';
-import { findCinemaStore } from 'src/features/findCinemaByName';
-import { searchStore } from 'src/features/SearchField';
+import { movieStore } from 'src/entities/Movie';
+import { searchMovieStore } from 'src/features/findMovieByName';
+import searchStore from 'src/features/searchField/model/slices/searchFieldStore';
+
 import { filmsStore } from 'src/pages/FilmsPage';
 import { serialsStore } from 'src/pages/SerialsPage';
 
@@ -9,8 +10,8 @@ export class RootStore {
   searchStore = new searchStore();
   filmsStore = new filmsStore();
   serialsStore = new serialsStore();
-  cinemaStore = new cinemaStore();
-  findCinemaStore = new findCinemaStore();
+  movieStore = new movieStore();
+  searchMovieStore = new searchMovieStore();
 
   constructor() {
     makeAutoObservable(this);

@@ -1,14 +1,13 @@
 import { observer } from 'mobx-react';
 import { useRootData } from 'src/shared/lib/hooks/useRootData';
-import styles from './SearchResultPage.module.css';
 
 export const SearchResultPage = observer(() => {
-  const { searchResult } = useRootData((store) => store.findCinemaStore);
+  const { searchResult } = useRootData((store) => store.searchMovieStore);
 
   return (
     <div>
-      {searchResult.map((cinema) => (
-        <p>{cinema.name}</p>
+      {searchResult.map((movie) => (
+        <p>{movie.name}</p>
       ))}
     </div>
   );

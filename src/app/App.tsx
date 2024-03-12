@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import styles from './styles/App.module.css';
 import { Route, Routes } from 'react-router-dom';
-import { CinemaPage } from 'src/pages/CinemaPage';
+import { MoviePage } from 'src/pages/MoviePage';
 import { FilmsPage } from 'src/pages/FilmsPage';
 import { MainPage } from 'src/pages/MainPage';
 import { SerialsPage } from 'src/pages/SerialsPage';
@@ -18,7 +18,7 @@ export const App = () => (
           <Route path="/films" element={<FilmsPage />} />
           <Route path="/serials" element={<SerialsPage />} />
           <Route path="/search-result" element={<SearchResultPage />} />
-          <Route path="/:params/:id" element={<CinemaPage />} />
+          <Route path="/:params/:id" element={<MoviePage />} />
         </Routes>
       </Suspense>
     </div>

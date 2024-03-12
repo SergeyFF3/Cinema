@@ -1,1 +1,0 @@
-export { CinemaRating } from './CinemaRating';
