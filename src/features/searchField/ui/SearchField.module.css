@@ -1,0 +1,19 @@
+.wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.search {
+  background: white;
+  border-radius: 3px;
+}
+
+.icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: white;
+}

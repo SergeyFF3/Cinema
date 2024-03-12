@@ -5,3 +5,5 @@ export const getCinemaByIdURL = `${baseUrl}/movie`;
 export const getAllFilmsURL = `${baseUrl}/movie?type=movie`;
 
 export const getAllSerialsURL = `${baseUrl}/movie?type=tv-series`;
+
+export const getCinemaBySearchURL = `${baseUrl}/movie/search`;

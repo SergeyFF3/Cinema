@@ -6,6 +6,7 @@ import { FilmsPage } from 'src/pages/FilmsPage';
 import { MainPage } from 'src/pages/MainPage';
 import { SerialsPage } from 'src/pages/SerialsPage';
 import { Navbar } from 'src/widgets/Navbar';
+import { SearchResultPage } from 'src/pages/SearchResultPage';
 
 export const App = () => (
   <>
@@ -16,6 +17,7 @@ export const App = () => (
           <Route path="/" element={<MainPage />} />
           <Route path="/films" element={<FilmsPage />} />
           <Route path="/serials" element={<SerialsPage />} />
+          <Route path="/search-result" element={<SearchResultPage />} />
           <Route path="/:params/:id" element={<CinemaPage />} />
         </Routes>
       </Suspense>
