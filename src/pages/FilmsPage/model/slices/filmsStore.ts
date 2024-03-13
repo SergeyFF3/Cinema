@@ -9,9 +9,9 @@ export class filmsStore {
     makeAutoObservable(this);
   }
 
-  getFilmsList = () => {
+  getFilmsList = (limit: string) => {
     filmsService
-      .filmsRequestService()
+      .filmsRequestService(limit)
       .then((res) => (this.filmsList = res.docs));
   };
 }

@@ -3,8 +3,8 @@ import { fetchData } from 'src/shared/config/fetch';
 import { IMovieList } from 'src/shared/types';
 
 export class filmsService {
-  static filmsRequestService(): Promise<IMovieList> {
-    return fetchData(getAllFilmsURL);
+  static filmsRequestService(limit: string): Promise<IMovieList> {
+    return fetchData(`${getAllFilmsURL}&limit=${limit}`);
   }
 }
 
