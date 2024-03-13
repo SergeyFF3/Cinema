@@ -8,7 +8,7 @@ const MainPage = observer(() => {
   const { getFilmsList, filmsList } = useRootData((store) => store.filmsStore);
 
   useEffect(() => {
-    getFilmsList('12');
+    getFilmsList(1, 12);
   }, []);
 
   return (

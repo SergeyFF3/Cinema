@@ -31,4 +31,6 @@ export interface IMovieProps {
 
 export interface IMovieList {
   docs: IMovieProps[];
+  page: number;
+  pages: number;
 }
