@@ -3,6 +3,7 @@ import { ChangeEvent } from 'react';
 
 export class searchStore {
   searchValue: string = '';
+  newSearchValue: string = '';
 
   constructor() {
     makeAutoObservable(this);
@@ -12,6 +13,10 @@ export class searchStore {
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     this.searchValue = e.target.value;
+  };
+
+  setNewSearchValue = (value: string) => {
+    this.newSearchValue = value;
   };
 
   removeValue = () => {

@@ -3,20 +3,41 @@ import styles from './MoviePage.module.css';
 import { useRootData } from 'src/shared/lib/hooks/useRootData';
 import { VideoPlayer } from 'src/widgets/VideoPlayer';
 import { AboutMovie } from 'src/entities/Movie';
+import { useEffect } from 'react';
+import { Typography } from '@mui/material';
 
 const MoviePage = observer(() => {
-  const { movieData } = useRootData((store) => store.movieStore);
+  const { movieId, movieData, getMovieById } = useRootData(
+    (store) => store.movieStore,
+  );
 
   if (!movieData) {
     return null;
   }
+
+  const trailers = movieData.videos.trailers;
+
+  const trailerBlock =
+    trailers && trailers.length > 0 ? (
+      <VideoPlayer trailers={trailers} />
+    ) : (
+      <Typography fontSize="20px" color="white" textAlign="center">
+        Упс, трейлера нет :)
+      </Typography>
+    );
+
+  useEffect(() => {
+    if (movieId) {
+      getMovieById(movieId);
+    }
+  }, [movieId]);
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.margin}>
         <AboutMovie {...movieData} />
       </div>
-      <VideoPlayer trailers={movieData.videos.trailers} />
+      {trailerBlock}
     </div>
   );
 });

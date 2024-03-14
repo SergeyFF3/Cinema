@@ -1,7 +1,8 @@
 .label {
+  text-align: center;
   margin: 10px 0 15px;
   padding: 5px 20px;
-  border-bottom: 2px solid mediumpurple;
+  border-bottom: 3px solid #ea80fc;
 }
 
 .title {

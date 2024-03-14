@@ -22,11 +22,12 @@ export const Pagination: FC<IPaginationProps> = ({
       <PaginationRounded
         sx={{ display: 'flex', justifyContent: 'center' }}
         size="large"
+        variant="outlined"
+        shape="rounded"
+        color="primary"
         page={page}
         count={pageCount}
         onChange={(_, num) => onChange(num)}
-        variant="outlined"
-        shape="rounded"
       />
     </Stack>
   );

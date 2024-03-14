@@ -3,16 +3,19 @@ import { observer } from 'mobx-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { SearchField } from 'src/features/searchField';
 import { useRootData } from 'src/shared/lib/hooks/useRootData';
+import { MenuBurger } from 'src/widgets/MenuBurger';
 import { nvabarListItems } from '../../model/selectors/getNavbarItems';
 import styles from './Navbar.module.css';
 
 export const Navbar = observer(() => {
-  const { searchMovieByName } = useRootData((store) => store.searchMovieStore);
+  const { searchMovieByName, page } = useRootData(
+    (store) => store.searchMovieStore,
+  );
   const { searchValue } = useRootData((store) => store.searchStore);
   const navigate = useNavigate();
 
   const redirectToSearchPage = () => {
-    searchMovieByName(searchValue);
+    searchMovieByName(searchValue, page);
     navigate('/search-result');
   };
 
@@ -35,12 +38,15 @@ export const Navbar = observer(() => {
             ))}
           </ul>
         </menu>
-        <SearchField />
-        <span className={styles.button}>
+        <div className={styles.searchWrapper}>
+          <SearchField />
+        </div>
+        <div className={styles.buttonWrapper}>
           <Button onClick={redirectToSearchPage} variant="contained">
-            Найти
+            <Typography sx={{ color: 'white' }}>Найти</Typography>
           </Button>
-        </span>
+        </div>
+        <MenuBurger />
       </div>
     </header>
   );

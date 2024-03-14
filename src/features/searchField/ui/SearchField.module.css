@@ -10,10 +10,28 @@
   border-radius: 3px;
 }
 
-.icon {
+.icon,
+.iconMobile,
+.closeIconMobile {
   position: absolute;
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
   background: white;
+}
+
+.iconMobile {
+  background-color: #ea80fc;
+  right: 5px;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  color: white;
+}
+
+.closeIconMobile {
+  right: 45px;
 }

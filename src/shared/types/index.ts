@@ -22,6 +22,11 @@ export interface IMovieProps {
   genres: IOnlyNames[];
   poster: {
     url: string;
+    previewUrl: string;
+  };
+  backdrop: {
+    url: string;
+    previewUrl: string;
   };
   ageRating: number;
   videos: {

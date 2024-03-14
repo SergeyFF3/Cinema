@@ -3,13 +3,18 @@ import { IMovieProps } from 'src/shared/types';
 import movieService from '../services/movieService';
 
 export class movieStore {
+  movieId: number | undefined = undefined;
   movieData: IMovieProps | null = null;
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  getMovieById = (id: string) => {
+  setMovieId = (id: number) => {
+    this.movieId = id;
+  };
+
+  getMovieById = (id: number) => {
     movieService.movieRequestService(id).then((res) => (this.movieData = res));
   };
 }

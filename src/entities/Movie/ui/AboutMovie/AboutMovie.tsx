@@ -30,9 +30,11 @@ export const AboutMovie: FC<IMovieProps> = (props) => {
         </div>
       </div>
       <div className={styles.column}>
-        <Typography fontSize="20px" color="gray">
-          {movieTitle}
-        </Typography>
+        {name && (
+          <Typography fontSize="20px" color="gray">
+            {movieTitle}
+          </Typography>
+        )}
         <div className={styles.description}>
           <Typography color="white">{description}</Typography>
         </div>

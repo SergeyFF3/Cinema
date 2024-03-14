@@ -6,7 +6,7 @@ import { ITrailer } from 'src/shared/types';
 export const VideoPlayer: FC<{ trailers: ITrailer[] }> = ({ trailers }) => {
   const videoId = trailers[0].url.match(/embed\/([^/?]+)/)?.[1];
 
-  if (!videoId) return null;
+  if (!videoId || !trailers) return null;
 
   return (
     <div className={styles.videoPlayer}>

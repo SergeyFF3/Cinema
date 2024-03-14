@@ -14,6 +14,7 @@
   margin: 0 auto;
   display: flex;
   align-items: center;
+  height: 50px;
 }
 
 .menu {
@@ -30,7 +31,7 @@
   margin-right: 20px;
   display: flex;
   align-items: center;
-  color: white;
+  color: #ea80fc;
 }
 
 .list {
@@ -43,6 +44,27 @@
   font-size: 16px;
 }
 
-.button {
+.searchWrapper {
+  width: 100%;
+}
+
+.buttonWrapper {
   margin-left: 10px;
+}
+
+@media (max-width: 850px) {
+  .wrapper {
+    justify-content: space-between;
+  }
+  .menu {
+    display: none;
+  }
+
+  .searchWrapper {
+    display: none;
+  }
+
+  .buttonWrapper {
+    display: none;
+  }
 }

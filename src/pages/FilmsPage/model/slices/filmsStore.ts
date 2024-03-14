@@ -6,14 +6,12 @@ export class filmsStore {
   filmsList: IMovieProps[] = [];
   page: number = 1;
   pages: number = 0;
-  isLoading: boolean = false;
 
   constructor() {
     makeAutoObservable(this);
   }
 
   getFilmsList = (pageNumber: number, limit: number) => {
-    this.isLoading = true;
     filmsService
       .filmsRequestService(pageNumber, limit)
       .then(
@@ -23,8 +21,7 @@ export class filmsStore {
           (this.pages = res.pages)
         ),
       )
-      .catch((error) => console.log(error))
-      .finally(() => (this.isLoading = false));
+      .catch((error) => console.log(error));
   };
 
   changePageHandler = (num: number) => {
