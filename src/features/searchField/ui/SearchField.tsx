@@ -15,7 +15,7 @@ export const SearchField: FC<{ onClose?: () => void }> = observer(
       (store) => store.searchMovieStore,
     );
     const { searchValue, setNewSearchValue, changeSearchValue, removeValue } =
-      useRootData((store) => store.searchStore);
+      useRootData((store) => store.searchFieldStore);
 
     const searchResultHandler = () => {
       turnOnIsLoading();

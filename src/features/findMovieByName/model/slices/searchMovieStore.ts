@@ -6,7 +6,7 @@ export class searchMovieStore {
   searchResult: IMovieProps[] = [];
   page: number = 1;
   pages: number = 0;
-  isLoading: boolean = false;
+  isLoading: boolean = true;
 
   constructor() {
     makeAutoObservable(this);

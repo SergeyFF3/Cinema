@@ -1,13 +1,13 @@
 import { makeAutoObservable } from 'mobx';
 import { movieStore } from 'src/entities/Movie';
 import { searchMovieStore } from 'src/features/findMovieByName';
-import searchStore from 'src/features/searchField/model/slices/searchFieldStore';
 import { filmsStore } from 'src/pages/FilmsPage';
 import { cartoonsStore } from 'src/pages/CartoonsPage';
 import { serialsStore } from 'src/pages/SerialsPage';
+import searchFieldStore from 'src/features/searchField/model/slices/searchFieldStore';
 
 export class RootStore {
-  searchStore = new searchStore();
+  searchFieldStore = new searchFieldStore();
   filmsStore = new filmsStore();
   serialsStore = new serialsStore();
   cartoonsStore = new cartoonsStore();

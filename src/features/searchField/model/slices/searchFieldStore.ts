@@ -1,7 +1,7 @@
 import { makeAutoObservable } from 'mobx';
 import { ChangeEvent } from 'react';
 
-export class searchStore {
+export class searchFieldStore {
   searchValue: string = '';
   newSearchValue: string = '';
 
@@ -24,4 +24,4 @@ export class searchStore {
   };
 }
 
-export default searchStore;
+export default searchFieldStore;

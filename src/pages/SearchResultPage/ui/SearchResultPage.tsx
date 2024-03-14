@@ -16,7 +16,7 @@ const SearchResultPage = observer(() => {
     changePageHandler,
     searchMovieByName,
   } = useRootData((store) => store.searchMovieStore);
-  const { newSearchValue } = useRootData((store) => store.searchStore);
+  const { newSearchValue } = useRootData((store) => store.searchFieldStore);
 
   useEffect(() => {
     searchMovieByName(newSearchValue, page);

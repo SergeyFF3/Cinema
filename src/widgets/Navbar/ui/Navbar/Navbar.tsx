@@ -8,15 +8,22 @@ import { nvabarListItems } from '../../model/selectors/getNavbarItems';
 import styles from './Navbar.module.css';
 
 export const Navbar = observer(() => {
-  const { searchMovieByName, page } = useRootData(
+  const navigate = useNavigate();
+  const { searchValue, setNewSearchValue, removeValue } = useRootData(
+    (store) => store.searchFieldStore,
+  );
+  const { turnOnIsLoading, setFirstPage } = useRootData(
     (store) => store.searchMovieStore,
   );
-  const { searchValue } = useRootData((store) => store.searchStore);
-  const navigate = useNavigate();
 
   const redirectToSearchPage = () => {
-    searchMovieByName(searchValue, page);
-    navigate('/search-result');
+    if (searchValue) {
+      turnOnIsLoading();
+      setNewSearchValue(searchValue);
+      removeValue();
+      setFirstPage();
+      navigate('/search-result');
+    }
   };
 
   return (
