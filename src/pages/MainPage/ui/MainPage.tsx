@@ -1,6 +1,7 @@
 import { observer } from 'mobx-react';
 import { useEffect } from 'react';
 import { MovieList } from 'src/entities/Movie';
+import { NotFoundPage } from 'src/pages/NotFoundPage';
 import { useRootData } from 'src/shared/lib/hooks/useRootData';
 import { Section } from 'src/shared/ui/Section';
 
@@ -19,17 +20,32 @@ const MainPage = observer(() => {
     getCartoonsList(1, 12);
   }, []);
 
+  if (
+    (filmsList.length === 0 &&
+      serialsList.length === 0 &&
+      cartoonsList.length === 0) ||
+    (!filmsList && !serialsList && !cartoonsList)
+  ) {
+    return <NotFoundPage />;
+  }
+
   return (
     <>
-      <Section title="Фильмы">
-        <MovieList movieList={filmsList} category="films" />
-      </Section>
-      <Section title="Сериалы">
-        <MovieList movieList={serialsList} category="serials" />
-      </Section>
-      <Section title="Мультфильмы">
-        <MovieList movieList={cartoonsList} category="cartoons" />
-      </Section>
+      {filmsList.length > 0 && (
+        <Section title="Фильмы">
+          <MovieList movieList={filmsList} category="films" />
+        </Section>
+      )}
+      {serialsList.length > 0 && (
+        <Section title="Сериалы">
+          <MovieList movieList={serialsList} category="serials" />
+        </Section>
+      )}
+      {cartoonsList.length > 0 && (
+        <Section title="Мультфильмы">
+          <MovieList movieList={cartoonsList} category="cartoons" />
+        </Section>
+      )}
     </>
   );
 });

@@ -11,11 +11,7 @@ const MoviePage = observer(() => {
     (store) => store.movieStore,
   );
 
-  if (!movieData) {
-    return null;
-  }
-
-  const trailers = movieData.videos.trailers;
+  const trailers = movieData?.videos.trailers;
 
   const trailerBlock =
     trailers && trailers.length > 0 ? (
@@ -31,6 +27,10 @@ const MoviePage = observer(() => {
       getMovieById(movieId);
     }
   }, [movieId]);
+
+  if (!movieData) {
+    return null;
+  }
 
   return (
     <div className={styles.wrapper}>

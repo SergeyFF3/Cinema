@@ -9,6 +9,7 @@ import { Navbar } from 'src/widgets/Navbar';
 import { SearchResultPage } from 'src/pages/SearchResultPage';
 import { CartoonsPage } from 'src/pages/CartoonsPage';
 import { PageLoader } from 'src/widgets/PageLoader';
+import { NotFoundPage } from 'src/pages/NotFoundPage';
 
 export const App = () => (
   <>
@@ -22,6 +23,7 @@ export const App = () => (
           <Route path="/cartoons" element={<CartoonsPage />} />
           <Route path="/search-result" element={<SearchResultPage />} />
           <Route path="/:params/:id" element={<MoviePage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
     </div>
