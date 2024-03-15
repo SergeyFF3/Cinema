@@ -5,6 +5,15 @@
   width: 100%;
   background: rgb(17, 17, 17);
   box-shadow: 0 3px 6px rgba(17, 17, 17, 0.9);
+  transition: top 0.4s ease;
+}
+
+.headerVisible {
+  top: 0;
+}
+
+.headerHidden {
+  top: -100%;
 }
 
 .wrapper {

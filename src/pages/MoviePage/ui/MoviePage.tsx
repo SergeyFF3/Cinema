@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { Typography } from '@mui/material';
 import { PageLoader } from 'src/widgets/PageLoader';
 import { PersonList } from 'src/entities/Person';
+import { Section } from 'src/shared/ui/Section';
 
 const MoviePage = observer(() => {
   const { movieId, movieData, isLoadingMoviePage, getMovieById } = useRootData(
@@ -44,7 +45,9 @@ const MoviePage = observer(() => {
         <AboutMovie {...movieData} />
       </div>
       {trailerBlock}
-      <PersonList persons={movieData.persons} />
+      <Section title="Актеры">
+        <PersonList persons={movieData.persons} />
+      </Section>
     </div>
   );
 });
