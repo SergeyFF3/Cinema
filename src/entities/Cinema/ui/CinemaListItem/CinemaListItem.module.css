@@ -1,0 +1,8 @@
+.link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: rgb(22, 22, 22);
+  padding: 8px 15px;
+  border-radius: 5px;
+}

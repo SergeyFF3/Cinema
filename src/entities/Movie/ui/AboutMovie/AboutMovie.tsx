@@ -1,11 +1,28 @@
-import { Typography } from '@mui/material';
+import {
+  Typography,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+} from '@mui/material';
+import { ArrowDropDown } from '@mui/icons-material';
 import { FC } from 'react';
-import { IMovieProps } from 'src/shared/types';
+import { IMovieProps, Statuses } from 'src/shared/types';
 import { FlistRow } from 'src/shared/ui/FlistRow';
 import { MovieRating } from 'src/shared/ui/MovieRating';
 import styles from './AboutMovie.module.css';
 import { Year } from 'src/shared/ui/Year';
 import useResize from 'src/shared/hooks/useResize';
+import { CinemaList } from 'src/entities/Cinema';
+
+type TextMapper = Record<Statuses, string>;
+
+const textMapper: TextMapper = {
+  announced: 'Анонсирован',
+  completed: 'Завершен',
+  filming: 'Снимается',
+  'pre-production': 'Готовится к производству',
+  'post-production': 'Окончательный монтаж',
+};
 
 export const AboutMovie: FC<IMovieProps> = (props) => {
   const {
@@ -18,10 +35,14 @@ export const AboutMovie: FC<IMovieProps> = (props) => {
     poster,
     rating,
     year,
+    status,
+    isSeries,
+    watchability,
   } = props;
 
   const [width] = useResize();
   const movieTitle = `${name} (${year}) смотреть онлайн`;
+  const currentStatus = textMapper[status];
 
   return (
     <section className={styles.wrapper}>
@@ -51,17 +72,21 @@ export const AboutMovie: FC<IMovieProps> = (props) => {
             </span>
             <MovieRating name="imdb" rating={rating.imdb} color="#fc0" />
           </span>
-          {width > 400 && (
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <FlistRow name="Рекомендуемый возраст" value={ageRating} />
-              <span style={{ color: 'white' }}>+</span>
-            </div>
-          )}
         </div>
         <FlistRow name="Год выхода" value={year} />
         <FlistRow name="Страна" value={countries} />
         <FlistRow name="Оригинальное название" value={alternativeName} />
+        <FlistRow name="Рекомендуемый возраст" value={`${ageRating}+`} />
         <FlistRow name="Категории" value={genres} />
+        {isSeries && <FlistRow name="Статус" value={currentStatus} />}
+        <Accordion>
+          <AccordionSummary expandIcon={<ArrowDropDown />}>
+            <Typography>Где смотреть</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <CinemaList cinemas={watchability.items} />
+          </AccordionDetails>
+        </Accordion>
       </div>
     </section>
   );

@@ -1,4 +1,4 @@
-type StatusType =
+export type Statuses =
   | 'completed'
   | 'announced'
   | 'filming'
@@ -10,7 +10,7 @@ interface IRating {
   imdb: number;
 }
 
-interface IWatchability {
+export interface IWatchability {
   name: string;
   logo: {
     url: string;
@@ -40,8 +40,8 @@ export interface IMovieProps {
   rating: IRating;
   description: string;
   year: number;
-  isSerials: boolean;
-  status: StatusType;
+  isSeries: boolean;
+  status: Statuses;
   watchability: {
     items: IWatchability[];
   };

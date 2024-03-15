@@ -12,18 +12,20 @@ export const FlistRow: FC<IFlistRowProps> = ({ name, value }) => {
   if (Array.isArray(value) && value.length > 0) {
     return (
       <div className={styles.label}>
-        <Typography color="gray" marginRight="5px">
-          {name}:
-        </Typography>
-        <ul className={styles.list}>
-          {value.map(({ name }, index) => (
-            <li key={name} className={styles.item}>
-              <Typography color="white">
-                {index < value.length - 1 ? `${name},` : name}
-              </Typography>
-            </li>
-          ))}
-        </ul>
+        <div className={styles.column}>
+          <Typography color="gray">{name}:</Typography>
+        </div>
+        <div className={styles.column}>
+          <ul className={styles.list}>
+            {value.map(({ name }, index) => (
+              <li key={name} className={styles.item}>
+                <Typography color="white">
+                  {index < value.length - 1 ? `${name},` : name}
+                </Typography>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     );
   }
@@ -31,10 +33,12 @@ export const FlistRow: FC<IFlistRowProps> = ({ name, value }) => {
   if (typeof value === 'string' || typeof value === 'number') {
     return (
       <div className={styles.label}>
-        <Typography color="gray" marginRight="5px">
-          {name}:
-        </Typography>
-        <Typography color="white">{value}</Typography>
+        <div className={styles.column}>
+          <Typography color="gray">{name}:</Typography>
+        </div>
+        <div className={styles.column}>
+          <Typography color="white">{value}</Typography>
+        </div>
       </div>
     );
   }
