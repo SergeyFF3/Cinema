@@ -1,0 +1,15 @@
+.menu {
+  margin: 50px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.menu > li {
+  flex: 1;
+  transition: 0.3s ease;
+}
+
+.menu:hover > li:not(:hover) {
+  opacity: 0.5;
+}

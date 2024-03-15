@@ -29,8 +29,10 @@ export interface IOnlyNames {
 export interface IPerson {
   id: number;
   name: string;
+  enName: string;
   photo: string;
   description: string;
+  enProfession: string;
 }
 
 export interface IMovieProps {
