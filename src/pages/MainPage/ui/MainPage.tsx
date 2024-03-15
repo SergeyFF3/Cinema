@@ -4,13 +4,16 @@ import { MovieList } from 'src/entities/Movie';
 import { NotFoundPage } from 'src/pages/NotFoundPage';
 import { useRootData } from 'src/shared/lib/hooks/useRootData';
 import { Section } from 'src/shared/ui/Section';
+import { PageLoader } from 'src/widgets/PageLoader';
 
 const MainPage = observer(() => {
-  const { getFilmsList, filmsList } = useRootData((store) => store.filmsStore);
-  const { getSerialsList, serialsList } = useRootData(
+  const { getFilmsList, filmsList, isLoadingFilms } = useRootData(
+    (store) => store.filmsStore,
+  );
+  const { getSerialsList, serialsList, isLoadingSerials } = useRootData(
     (store) => store.serialsStore,
   );
-  const { getCartoonsList, cartoonsList } = useRootData(
+  const { getCartoonsList, cartoonsList, isLoadingCartoons } = useRootData(
     (store) => store.cartoonsStore,
   );
 
@@ -20,32 +23,37 @@ const MainPage = observer(() => {
     getCartoonsList(1, 12);
   }, []);
 
-  if (
-    (filmsList.length === 0 &&
-      serialsList.length === 0 &&
-      cartoonsList.length === 0) ||
-    (!filmsList && !serialsList && !cartoonsList)
-  ) {
+  const filmsSection = filmsList.length > 0 && (
+    <Section title="Фильмы">
+      <MovieList movieList={filmsList} category="films" />
+    </Section>
+  );
+
+  const serialsSection = serialsList.length > 0 && (
+    <Section title="Сериалы">
+      <MovieList movieList={serialsList} category="serials" />
+    </Section>
+  );
+
+  const cartoonsSection = cartoonsList.length > 0 && (
+    <Section title="Мультфильмы">
+      <MovieList movieList={cartoonsList} category="cartoons" />
+    </Section>
+  );
+
+  if (isLoadingFilms || isLoadingSerials || isLoadingCartoons) {
+    return <PageLoader />;
+  }
+
+  if (!filmsSection && !serialsSection && !cartoonsSection) {
     return <NotFoundPage />;
   }
 
   return (
     <>
-      {filmsList.length > 0 && (
-        <Section title="Фильмы">
-          <MovieList movieList={filmsList} category="films" />
-        </Section>
-      )}
-      {serialsList.length > 0 && (
-        <Section title="Сериалы">
-          <MovieList movieList={serialsList} category="serials" />
-        </Section>
-      )}
-      {cartoonsList.length > 0 && (
-        <Section title="Мультфильмы">
-          <MovieList movieList={cartoonsList} category="cartoons" />
-        </Section>
-      )}
+      {filmsSection}
+      {serialsSection}
+      {cartoonsSection}
     </>
   );
 });

@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { SearchField } from 'src/features/searchField';
 import { useRootData } from 'src/shared/lib/hooks/useRootData';
 import { MenuBurger } from 'src/widgets/MenuBurger';
-import { nvabarListItems } from '../../model/selectors/getNavbarItems';
+import { NavbarList } from '../NavbarList';
 import styles from './Navbar.module.css';
 
 export const Navbar = observer(() => {
@@ -32,19 +32,7 @@ export const Navbar = observer(() => {
         <Link to="/" className={styles.logo}>
           <Typography fontSize="20px">Cine[Ma]tthew</Typography>
         </Link>
-        <menu className={styles.menu}>
-          <ul className={styles.list}>
-            {nvabarListItems.map((item) => (
-              <li key={item.path} className={styles.item}>
-                <Link to={item.path}>
-                  <Typography color="white" fontSize="16px">
-                    {item.text}
-                  </Typography>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </menu>
+        <NavbarList />
         <div className={styles.searchWrapper}>
           <SearchField />
         </div>

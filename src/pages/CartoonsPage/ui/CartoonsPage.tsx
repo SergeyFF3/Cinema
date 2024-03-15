@@ -11,7 +11,7 @@ const CartoonsPage = observer(() => {
     cartoonsList,
     page,
     pages,
-    isLoading,
+    isLoadingCartoons,
     getCartoonsList,
     changePageHandler,
   } = useRootData((store) => store.cartoonsStore);
@@ -20,7 +20,7 @@ const CartoonsPage = observer(() => {
     getCartoonsList(page, 30);
   }, [page]);
 
-  if (isLoading) {
+  if (isLoadingCartoons) {
     return <PageLoader />;
   }
 

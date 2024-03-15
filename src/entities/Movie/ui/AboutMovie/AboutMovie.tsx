@@ -5,6 +5,7 @@ import { FlistRow } from 'src/shared/ui/FlistRow';
 import { MovieRating } from 'src/shared/ui/MovieRating';
 import styles from './AboutMovie.module.css';
 import { Year } from 'src/shared/ui/Year';
+import useResize from 'src/shared/hooks/useResize';
 
 export const AboutMovie: FC<IMovieProps> = (props) => {
   const {
@@ -19,6 +20,7 @@ export const AboutMovie: FC<IMovieProps> = (props) => {
     year,
   } = props;
 
+  const [width] = useResize();
   const movieTitle = `${name} (${year}) смотреть онлайн`;
 
   return (
@@ -31,7 +33,11 @@ export const AboutMovie: FC<IMovieProps> = (props) => {
       </div>
       <div className={styles.column}>
         {name && (
-          <Typography fontSize="20px" color="gray">
+          <Typography
+            fontSize="20px"
+            color="gray"
+            textAlign={width > 850 ? 'left' : 'center'}
+          >
             {movieTitle}
           </Typography>
         )}
@@ -45,10 +51,12 @@ export const AboutMovie: FC<IMovieProps> = (props) => {
             </span>
             <MovieRating name="imdb" rating={rating.imdb} color="#fc0" />
           </span>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
-            <FlistRow name="Рекомендуемый возраст" value={ageRating} />
-            <span style={{ color: 'white' }}>+</span>
-          </div>
+          {width > 400 && (
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <FlistRow name="Рекомендуемый возраст" value={ageRating} />
+              <span style={{ color: 'white' }}>+</span>
+            </div>
+          )}
         </div>
         <FlistRow name="Год выхода" value={year} />
         <FlistRow name="Страна" value={countries} />

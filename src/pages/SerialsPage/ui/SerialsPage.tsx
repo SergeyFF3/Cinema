@@ -11,7 +11,7 @@ const SerialsPage = observer(() => {
     serialsList,
     page,
     pages,
-    isLoading,
+    isLoadingSerials,
     getSerialsList,
     changePageHandler,
   } = useRootData((store) => store.serialsStore);
@@ -20,7 +20,7 @@ const SerialsPage = observer(() => {
     getSerialsList(page, 30);
   }, [page]);
 
-  if (isLoading) {
+  if (isLoadingSerials) {
     return <PageLoader />;
   }
 

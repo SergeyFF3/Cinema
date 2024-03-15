@@ -6,18 +6,19 @@ export class filmsStore {
   filmsList: IMovieProps[] = [];
   page: number = 1;
   pages: number = 0;
-  isLoading: boolean = false;
+  isLoadingFilms: boolean = false;
 
   constructor() {
     makeAutoObservable(this);
   }
 
   changePageHandler = (num: number) => {
-    this.isLoading = true;
     this.page = num;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   getFilmsList = (pageNumber: number, limit: number) => {
+    this.isLoadingFilms = true;
     filmsService
       .filmsRequestService(pageNumber, limit)
       .then(
@@ -28,7 +29,7 @@ export class filmsStore {
         ),
       )
       .catch((error) => console.log(error))
-      .finally(() => (this.isLoading = false));
+      .finally(() => (this.isLoadingFilms = false));
   };
 }
 

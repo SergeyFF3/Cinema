@@ -8,9 +8,5 @@ export const VideoPlayer: FC<{ trailers: ITrailer[] }> = ({ trailers }) => {
 
   if (!videoId || !trailers) return null;
 
-  return (
-    <div className={styles.videoPlayer}>
-      <YouTube videoId={videoId} />
-    </div>
-  );
+  return <YouTube className={styles.videoPlayer} videoId={videoId} />;
 };

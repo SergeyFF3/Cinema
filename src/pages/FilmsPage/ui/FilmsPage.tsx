@@ -7,14 +7,20 @@ import { Pagination } from 'src/widgets/Pagination';
 import styles from './FilmsPage.module.css';
 
 const FilmsPage = observer(() => {
-  const { filmsList, page, pages, isLoading, getFilmsList, changePageHandler } =
-    useRootData((store) => store.filmsStore);
+  const {
+    filmsList,
+    page,
+    pages,
+    isLoadingFilms,
+    getFilmsList,
+    changePageHandler,
+  } = useRootData((store) => store.filmsStore);
 
   useEffect(() => {
     getFilmsList(page, 30);
   }, [page]);
 
-  if (isLoading) {
+  if (isLoadingFilms) {
     return <PageLoader />;
   }
 

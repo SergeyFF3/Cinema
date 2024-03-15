@@ -6,18 +6,19 @@ export class cartoonsStore {
   cartoonsList: IMovieProps[] = [];
   page: number = 1;
   pages: number = 0;
-  isLoading: boolean = false;
+  isLoadingCartoons: boolean = false;
 
   constructor() {
     makeAutoObservable(this);
   }
 
   changePageHandler = (num: number) => {
-    this.isLoading = true;
     this.page = num;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   getCartoonsList = (pageNumber: number, limit: number) => {
+    this.isLoadingCartoons = true;
     cartoonService
       .cartoonRequestService(pageNumber, limit)
       .then(
@@ -28,7 +29,7 @@ export class cartoonsStore {
         ),
       )
       .catch((e) => console.log(e))
-      .finally(() => (this.isLoading = false));
+      .finally(() => (this.isLoadingCartoons = false));
   };
 }
 

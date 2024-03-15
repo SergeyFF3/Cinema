@@ -6,18 +6,19 @@ export class serialsStore {
   serialsList: IMovieProps[] = [];
   page: number = 1;
   pages: number = 0;
-  isLoading: boolean = false;
+  isLoadingSerials: boolean = false;
 
   constructor() {
     makeAutoObservable(this);
   }
 
   changePageHandler = (num: number) => {
-    this.isLoading = true;
     this.page = num;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   getSerialsList = (pageNumber: number, limit: number) => {
+    this.isLoadingSerials = true;
     serialsService
       .serialsRequestService(pageNumber, limit)
       .then(
@@ -28,7 +29,7 @@ export class serialsStore {
         ),
       )
       .catch((e) => console.log(e))
-      .finally(() => (this.isLoading = false));
+      .finally(() => (this.isLoadingSerials = false));
   };
 }
 

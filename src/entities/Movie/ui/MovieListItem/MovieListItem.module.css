@@ -61,3 +61,21 @@
   opacity: 0;
   transition: 0.3s ease;
 }
+
+@media (max-width: 900px) {
+  .wrapper {
+    height: 300px;
+  }
+}
+
+@media (max-width: 520px) {
+  .wrapper {
+    height: 250px;
+  }
+}
+
+@media (max-width: 380px) {
+  .wrapper {
+    height: 200px;
+  }
+}

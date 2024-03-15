@@ -1,5 +1,17 @@
-.videoPlayer {
-  max-width: 700px;
+.videoPlayer iframe {
+  height: 500px;
   width: 100%;
-  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .videoPlayer iframe {
+    height: 350px;
+  }
+}
+
+@media (max-width: 700px) {
+  .videoPlayer iframe {
+    width: 100%;
+    min-height: 300px;
+  }
 }
