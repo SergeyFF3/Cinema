@@ -14,7 +14,6 @@ export class cartoonsStore {
 
   changePageHandler = (num: number) => {
     this.page = num;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   getCartoonsList = (pageNumber: number, limit: number) => {

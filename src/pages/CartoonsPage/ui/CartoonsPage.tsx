@@ -17,6 +17,7 @@ const CartoonsPage = observer(() => {
   } = useRootData((store) => store.cartoonsStore);
 
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     getCartoonsList(page, 30);
   }, [page]);
 

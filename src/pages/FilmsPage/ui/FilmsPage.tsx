@@ -17,6 +17,7 @@ const FilmsPage = observer(() => {
   } = useRootData((store) => store.filmsStore);
 
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     getFilmsList(page, 30);
   }, [page]);
 

@@ -17,6 +17,7 @@ const SerialsPage = observer(() => {
   } = useRootData((store) => store.serialsStore);
 
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     getSerialsList(page, 30);
   }, [page]);
 

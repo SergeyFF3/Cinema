@@ -14,7 +14,6 @@ export class filmsStore {
 
   changePageHandler = (num: number) => {
     this.page = num;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   getFilmsList = (pageNumber: number, limit: number) => {

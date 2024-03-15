@@ -14,7 +14,6 @@ export class serialsStore {
 
   changePageHandler = (num: number) => {
     this.page = num;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   getSerialsList = (pageNumber: number, limit: number) => {

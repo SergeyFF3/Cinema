@@ -21,12 +21,11 @@ export class searchMovieStore {
   };
 
   changePageHandler = (num: number) => {
-    this.isLoading = true;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
     this.page = num;
   };
 
   searchMovieByName = (name: string, pageNumber: number) => {
+    this.isLoading = true;
     searchMovieService
       .searchMovieRequestService(name, pageNumber)
       .then(

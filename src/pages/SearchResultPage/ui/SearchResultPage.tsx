@@ -19,6 +19,7 @@ const SearchResultPage = observer(() => {
   const { newSearchValue } = useRootData((store) => store.searchFieldStore);
 
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     searchMovieByName(newSearchValue, page);
   }, [newSearchValue, page]);
 

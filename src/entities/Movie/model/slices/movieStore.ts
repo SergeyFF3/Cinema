@@ -5,6 +5,7 @@ import movieService from '../services/movieService';
 export class movieStore {
   movieId: number | undefined = undefined;
   movieData: IMovieProps | null = null;
+  isLoadingMoviePage: boolean = false;
 
   constructor() {
     makeAutoObservable(this);
@@ -15,6 +16,10 @@ export class movieStore {
   };
 
   getMovieById = (id: number) => {
-    movieService.movieRequestService(id).then((res) => (this.movieData = res));
+    this.isLoadingMoviePage = true;
+    movieService
+      .movieRequestService(id)
+      .then((res) => (this.movieData = res))
+      .finally(() => (this.isLoadingMoviePage = false));
   };
 }

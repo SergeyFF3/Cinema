@@ -5,9 +5,10 @@ import { VideoPlayer } from 'src/widgets/VideoPlayer';
 import { AboutMovie } from 'src/entities/Movie';
 import { useEffect } from 'react';
 import { Typography } from '@mui/material';
+import { PageLoader } from 'src/widgets/PageLoader';
 
 const MoviePage = observer(() => {
-  const { movieId, movieData, getMovieById } = useRootData(
+  const { movieId, movieData, isLoadingMoviePage, getMovieById } = useRootData(
     (store) => store.movieStore,
   );
 
@@ -27,6 +28,8 @@ const MoviePage = observer(() => {
       getMovieById(movieId);
     }
   }, [movieId]);
+
+  if (isLoadingMoviePage) return <PageLoader />;
 
   if (!movieData) {
     return null;

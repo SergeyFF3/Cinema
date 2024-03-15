@@ -5,14 +5,9 @@ import { ITrailer } from 'src/shared/types';
 import { Typography } from '@mui/material';
 
 export const VideoPlayer: FC<{ trailers: ITrailer[] }> = ({ trailers }) => {
-  const videoId = trailers[0].url.match(/embed\/([^/?]+)/)?.[1];
+  const videoId = trailers[1].url.match(/embed\/([^/?]+)/)?.[1];
 
-  if (!videoId || !trailers)
-    return (
-      <Typography color="white" fontSize="20px" textAlign="center">
-        Трейлер отсутствует. <br /> Заходите позднее :)
-      </Typography>
-    );
+  if (!videoId || !trailers) return null;
 
   return <YouTube className={styles.videoPlayer} videoId={videoId} />;
 };
