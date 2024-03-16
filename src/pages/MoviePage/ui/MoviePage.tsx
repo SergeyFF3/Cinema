@@ -8,6 +8,7 @@ import { Typography } from '@mui/material';
 import { PageLoader } from 'src/widgets/PageLoader';
 import { PersonList } from 'src/entities/Person';
 import { Section } from 'src/shared/ui/Section';
+import { NotFoundPage } from 'src/pages/NotFoundPage';
 
 const MoviePage = observer(() => {
   const { movieId, movieData, isLoadingMoviePage, getMovieById } = useRootData(
@@ -26,6 +27,8 @@ const MoviePage = observer(() => {
     );
 
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
     if (movieId) {
       getMovieById(movieId);
     }
@@ -36,7 +39,7 @@ const MoviePage = observer(() => {
   }
 
   if (!movieData) {
-    return null;
+    return <NotFoundPage />;
   }
 
   return (

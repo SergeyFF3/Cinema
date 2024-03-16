@@ -1,1 +1,1 @@
-export const CINEMA_LOCALSTORAGE_KEY = 'cinema';
+export const PERSON_ID_LOCALSTORAGE_KEY = 'personId';

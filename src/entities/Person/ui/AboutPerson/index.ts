@@ -1,0 +1,1 @@
+export { AboutPerson } from './AboutPerson';

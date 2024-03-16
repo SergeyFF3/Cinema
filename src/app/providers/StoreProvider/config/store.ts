@@ -5,6 +5,7 @@ import { filmsStore } from 'src/pages/FilmsPage';
 import { cartoonsStore } from 'src/pages/CartoonsPage';
 import { serialsStore } from 'src/pages/SerialsPage';
 import searchFieldStore from 'src/features/searchField/model/slices/searchFieldStore';
+import { personStore } from 'src/pages/PersonPage';
 
 export class RootStore {
   searchFieldStore = new searchFieldStore();
@@ -12,6 +13,7 @@ export class RootStore {
   serialsStore = new serialsStore();
   cartoonsStore = new cartoonsStore();
   movieStore = new movieStore();
+  personStore = new personStore();
   searchMovieStore = new searchMovieStore();
 
   constructor() {

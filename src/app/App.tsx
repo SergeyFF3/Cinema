@@ -10,6 +10,7 @@ import { SearchResultPage } from 'src/pages/SearchResultPage';
 import { CartoonsPage } from 'src/pages/CartoonsPage';
 import { PageLoader } from 'src/widgets/PageLoader';
 import { NotFoundPage } from 'src/pages/NotFoundPage';
+import { PersonPage } from 'src/pages/PersonPage';
 
 export const App = () => (
   <>
@@ -23,6 +24,7 @@ export const App = () => (
           <Route path="/cartoons" element={<CartoonsPage />} />
           <Route path="/search-result" element={<SearchResultPage />} />
           <Route path="/:params/:id" element={<MoviePage />} />
+          <Route path="/person/:id" element={<PersonPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>

@@ -1,0 +1,11 @@
+.item {
+  background-color: #ea80fc;
+  border-radius: 5px;
+  padding: 5px 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  min-width: max-content;
+}

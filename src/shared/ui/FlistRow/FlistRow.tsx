@@ -1,11 +1,12 @@
 import { Typography } from '@mui/material';
 import { FC } from 'react';
+import { IOnlyValueProp } from 'src/entities/Person';
 import { IOnlyNames } from 'src/shared/types';
 import styles from './FlistRow.module.css';
 
 interface IFlistRowProps {
   name: string;
-  value: IOnlyNames[] | string | number;
+  value: string | number | IOnlyNames[] | IOnlyValueProp[];
 }
 
 export const FlistRow: FC<IFlistRowProps> = ({ name, value }) => {
@@ -17,10 +18,13 @@ export const FlistRow: FC<IFlistRowProps> = ({ name, value }) => {
         </div>
         <div className={styles.column}>
           <ul className={styles.list}>
-            {value.map(({ name }, index) => (
-              <li key={name} className={styles.item}>
+            {value.map((item, index) => (
+              <li key={index} className={styles.item}>
                 <Typography color="white">
-                  {index < value.length - 1 ? `${name},` : name}
+                  {typeof item === 'object' && 'name' in item
+                    ? item.name
+                    : item.value}
+                  {index < value.length - 1 && ','}
                 </Typography>
               </li>
             ))}

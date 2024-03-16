@@ -1,14 +1,21 @@
 import { Typography } from '@mui/material';
+import { observer } from 'mobx-react';
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
+import { PERSON_ID_LOCALSTORAGE_KEY } from 'src/shared/const/localstorage';
+import { setDataInLocalStorage } from 'src/shared/lib/setDataInLocalStorage';
 import { IPerson } from 'src/shared/types';
 import styles from './PersonListItem.module.css';
 
-export const PersonListItem: FC<IPerson> = (props) => {
+export const PersonListItem: FC<IPerson> = observer((props) => {
   const { id, description, enName, name, photo } = props;
 
   return (
-    <Link to={`/person/${id}`} className={styles.item}>
+    <Link
+      className={styles.item}
+      to={`/person/${id}`}
+      onClick={() => setDataInLocalStorage(PERSON_ID_LOCALSTORAGE_KEY, id)}
+    >
       <img className={styles.image} src={photo} />
       <Typography color="white" textAlign="center">
         {name}
@@ -21,4 +28,4 @@ export const PersonListItem: FC<IPerson> = (props) => {
       </Typography>
     </Link>
   );
-};
+});
