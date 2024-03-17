@@ -7,8 +7,8 @@ export const PersonMoviesList: FC<{ movies: IPersonMovie[] }> = ({
   movies,
 }) => (
   <ul className={styles.list}>
-    {movies.map((movie) => (
-      <li key={movie.id}>
+    {movies.map((movie, index) => (
+      <li key={index}>
         <PersonMoviesListItem {...movie} />
       </li>
     ))}

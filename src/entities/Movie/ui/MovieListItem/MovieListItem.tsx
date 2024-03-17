@@ -3,7 +3,8 @@ import { Typography } from '@mui/material';
 import { observer } from 'mobx-react';
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { useRootData } from 'src/shared/lib/hooks/useRootData';
+import { MOVIE_ID_LOCALSTORAGE_KEY } from 'src/shared/const/localstorage';
+import { setDataInLocalStorage } from 'src/shared/lib/setDataInLocalStorage';
 import { IMovieProps } from 'src/shared/types';
 import { MovieRating } from 'src/shared/ui/MovieRating';
 import { Year } from 'src/shared/ui/Year';
@@ -16,10 +17,12 @@ interface IMovieListItemProps {
 
 export const MovieListItem: FC<IMovieListItemProps> = observer(
   ({ category, movie }) => {
-    const { setMovieId } = useRootData((store) => store.movieStore);
-
     return (
-      <li onClick={() => setMovieId(movie.id)}>
+      <li
+        onClick={() =>
+          setDataInLocalStorage(MOVIE_ID_LOCALSTORAGE_KEY, movie.id)
+        }
+      >
         <Link to={`/${category}/${movie.id}`}>
           <div className={styles.wrapper}>
             <div className={styles.imageWrapper}>

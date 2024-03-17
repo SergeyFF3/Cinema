@@ -9,30 +9,38 @@ import { PageLoader } from 'src/widgets/PageLoader';
 import { PersonList } from 'src/entities/Person';
 import { Section } from 'src/shared/ui/Section';
 import { NotFoundPage } from 'src/pages/NotFoundPage';
+import { getDataFromLocalStorage } from 'src/shared/lib/getDataFromLocalStorage';
+import { MOVIE_ID_LOCALSTORAGE_KEY } from 'src/shared/const/localstorage';
 
 const MoviePage = observer(() => {
-  const { movieId, movieData, isLoadingMoviePage, getMovieById } = useRootData(
+  const { movieData, isLoadingMoviePage, getMovieById } = useRootData(
     (store) => store.movieStore,
   );
 
-  const trailers = movieData?.videos.trailers;
+  const trailers = movieData?.videos?.trailers;
 
   const trailerBlock =
     trailers && trailers.length > 0 ? (
       <VideoPlayer trailers={trailers} />
     ) : (
-      <Typography fontSize="20px" color="white" textAlign="center">
+      <Typography
+        fontSize="20px"
+        color="white"
+        textAlign="center"
+        marginBottom="50px"
+      >
         Упс, трейлера нет :)
       </Typography>
     );
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    const movieId = Number(getDataFromLocalStorage(MOVIE_ID_LOCALSTORAGE_KEY));
 
     if (movieId) {
       getMovieById(movieId);
     }
-  }, [movieId]);
+  }, []);
 
   if (isLoadingMoviePage) {
     return <PageLoader />;

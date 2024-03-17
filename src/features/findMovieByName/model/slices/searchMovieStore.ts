@@ -1,4 +1,5 @@
 import { makeAutoObservable } from 'mobx';
+import { SEARCH_RESULT_PAGE_NUM_LOCALSTORAGE_KEY } from 'src/shared/const/localstorage';
 import { IMovieProps } from 'src/shared/types';
 import { searchMovieService } from '../services/searchMovieService';
 
@@ -16,12 +17,20 @@ export class searchMovieStore {
     this.page = 1;
   };
 
+  setSearchResultPageNumber = (num: number) => {
+    this.page = num;
+  };
+
   turnOnIsLoading = () => {
     this.isLoading = true;
   };
 
   changePageHandler = (num: number) => {
     this.page = num;
+    localStorage.setItem(
+      SEARCH_RESULT_PAGE_NUM_LOCALSTORAGE_KEY,
+      JSON.stringify(num),
+    );
   };
 
   searchMovieByName = (name: string, pageNumber: number) => {

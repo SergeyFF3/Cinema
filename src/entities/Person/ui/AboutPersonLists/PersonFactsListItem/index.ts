@@ -1,0 +1,1 @@
+export { PersonFactsListItem } from './PersonFactsListItem';

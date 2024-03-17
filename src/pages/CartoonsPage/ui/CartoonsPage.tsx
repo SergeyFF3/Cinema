@@ -1,6 +1,8 @@
 import { observer } from 'mobx-react';
 import { useEffect } from 'react';
 import { MovieList } from 'src/entities/Movie';
+import { CARTOON_PAGE_NUM_LOCALSTORAGE_KEY } from 'src/shared/const/localstorage';
+import { getDataFromLocalStorage } from 'src/shared/lib/getDataFromLocalStorage';
 import { useRootData } from 'src/shared/lib/hooks/useRootData';
 import { PageLoader } from 'src/widgets/PageLoader';
 import { Pagination } from 'src/widgets/Pagination';
@@ -12,13 +14,19 @@ const CartoonsPage = observer(() => {
     page,
     pages,
     isLoadingCartoons,
+    setCartoonPageNumber,
     getCartoonsList,
     changePageHandler,
   } = useRootData((store) => store.cartoonsStore);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    getCartoonsList(page, 30);
+
+    const pageNumber =
+      Number(getDataFromLocalStorage(CARTOON_PAGE_NUM_LOCALSTORAGE_KEY)) || 1;
+    setCartoonPageNumber(pageNumber);
+
+    getCartoonsList(pageNumber, 30);
   }, [page]);
 
   if (isLoadingCartoons) {

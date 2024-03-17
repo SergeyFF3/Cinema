@@ -1,6 +1,7 @@
-import { Button, Typography } from '@mui/material';
+import { Button } from '@mui/material';
 import { FC, useEffect, useRef, useState } from 'react';
 import { IOnlyValueProp } from '../../../model/types/person';
+import { PersonFactsListItem } from '../PersonFactsListItem';
 
 export const PersonFactsList: FC<{ list: IOnlyValueProp[] }> = ({ list }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,13 +10,23 @@ export const PersonFactsList: FC<{ list: IOnlyValueProp[] }> = ({ list }) => {
   const textButton = isOpen ? 'Скрыть' : 'Читать далее';
 
   useEffect(() => {
-    if (listRef.current) {
+    if (listRef.current && list.length > 5) {
       const firstFiveHeight = Array.from(listRef.current.children)
         .slice(0, 6)
         .reduce((acc, child) => acc + (child as HTMLElement).offsetHeight, 0);
       setMaxHeight(firstFiveHeight);
     }
-  }, [list]);
+  }, [list.length]);
+
+  if (list.length < 6) {
+    return (
+      <ul>
+        {list.map(({ value }) => (
+          <PersonFactsListItem key={value} value={value} />
+        ))}
+      </ul>
+    );
+  }
 
   return (
     <>
@@ -28,11 +39,7 @@ export const PersonFactsList: FC<{ list: IOnlyValueProp[] }> = ({ list }) => {
         }}
       >
         {list.map(({ value }) => (
-          <li key={value}>
-            <Typography color="gray" marginBottom="10px">
-              {value}
-            </Typography>
-          </li>
+          <PersonFactsListItem key={value} value={value} />
         ))}
       </ul>
       <Button onClick={() => setIsOpen(!isOpen)}>{textButton}</Button>

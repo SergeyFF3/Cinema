@@ -4,16 +4,11 @@ import personService from '../services/personService';
 
 export class personStore {
   personData: IPersonProps | null = null;
-  personId: number = 0;
   isLoadingPersonPage: boolean = false;
 
   constructor() {
     makeAutoObservable(this);
   }
-
-  setPersonId = (personId: number) => {
-    this.personId = personId;
-  };
 
   getPersonById = (personId: number) => {
     this.isLoadingPersonPage = true;

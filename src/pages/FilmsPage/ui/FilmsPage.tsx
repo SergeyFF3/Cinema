@@ -1,6 +1,8 @@
 import { observer } from 'mobx-react';
 import { useEffect } from 'react';
 import { MovieList } from 'src/entities/Movie';
+import { FILM_PAGE_NUM_LOCALSTORAGE_KEY } from 'src/shared/const/localstorage';
+import { getDataFromLocalStorage } from 'src/shared/lib/getDataFromLocalStorage';
 import { useRootData } from 'src/shared/lib/hooks/useRootData';
 import { PageLoader } from 'src/widgets/PageLoader';
 import { Pagination } from 'src/widgets/Pagination';
@@ -12,13 +14,19 @@ const FilmsPage = observer(() => {
     page,
     pages,
     isLoadingFilms,
+    setFilmsPageNumber,
     getFilmsList,
     changePageHandler,
   } = useRootData((store) => store.filmsStore);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    getFilmsList(page, 30);
+
+    const pageNumber =
+      Number(getDataFromLocalStorage(FILM_PAGE_NUM_LOCALSTORAGE_KEY)) || 1;
+    setFilmsPageNumber(pageNumber);
+
+    getFilmsList(pageNumber, 30);
   }, [page]);
 
   if (isLoadingFilms) {

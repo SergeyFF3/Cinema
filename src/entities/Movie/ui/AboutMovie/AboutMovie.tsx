@@ -76,17 +76,22 @@ export const AboutMovie: FC<IMovieProps> = (props) => {
         <FlistRow name="Год выхода" value={year} />
         <FlistRow name="Страна" value={countries} />
         <FlistRow name="Оригинальное название" value={alternativeName} />
-        <FlistRow name="Рекомендуемый возраст" value={`${ageRating}+`} />
+        <FlistRow
+          name="Рекомендуемый возраст"
+          value={ageRating && `${ageRating}+`}
+        />
         <FlistRow name="Категории" value={genres} />
         {isSeries && <FlistRow name="Статус" value={currentStatus} />}
-        <Accordion>
-          <AccordionSummary expandIcon={<ArrowDropDown />}>
-            <Typography>Где смотреть</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <CinemaList cinemas={watchability.items} />
-          </AccordionDetails>
-        </Accordion>
+        {watchability.items && watchability.items.length > 0 && (
+          <Accordion>
+            <AccordionSummary expandIcon={<ArrowDropDown />}>
+              <Typography>Где смотреть</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <CinemaList cinemas={watchability.items} />
+            </AccordionDetails>
+          </Accordion>
+        )}
       </div>
     </section>
   );

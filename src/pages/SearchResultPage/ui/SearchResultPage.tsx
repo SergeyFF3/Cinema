@@ -2,6 +2,7 @@ import { Typography } from '@mui/material';
 import { observer } from 'mobx-react';
 import { useEffect } from 'react';
 import { MovieList } from 'src/entities/Movie';
+import { SEARCH_RESULT_PAGE_NUM_LOCALSTORAGE_KEY } from 'src/shared/const/localstorage';
 import { useRootData } from 'src/shared/lib/hooks/useRootData';
 import { PageLoader } from 'src/widgets/PageLoader';
 import { Pagination } from 'src/widgets/Pagination';
@@ -13,6 +14,7 @@ const SearchResultPage = observer(() => {
     page,
     pages,
     isLoading,
+    setSearchResultPageNumber,
     changePageHandler,
     searchMovieByName,
   } = useRootData((store) => store.searchMovieStore);
@@ -20,7 +22,13 @@ const SearchResultPage = observer(() => {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    searchMovieByName(newSearchValue, page);
+
+    const pageNumber =
+      Number(localStorage.getItem(SEARCH_RESULT_PAGE_NUM_LOCALSTORAGE_KEY)) ||
+      1;
+    setSearchResultPageNumber(pageNumber);
+
+    searchMovieByName(newSearchValue, pageNumber);
   }, [newSearchValue, page]);
 
   if (isLoading) {

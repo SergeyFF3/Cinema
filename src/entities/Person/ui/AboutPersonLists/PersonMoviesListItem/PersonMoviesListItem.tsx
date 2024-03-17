@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material';
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { useRootData } from 'src/shared/lib/hooks/useRootData';
+import { MOVIE_ID_LOCALSTORAGE_KEY } from 'src/shared/const/localstorage';
 import { EnProfessionsType, IPersonMovie } from '../../../model/types/person';
 import styles from './PersonMoviesListItem.module.css';
 
@@ -29,13 +29,14 @@ const textMapper: TextMapper = {
 
 export const PersonMoviesListItem: FC<IPersonMovie> = (props) => {
   const { alternativeName, description, enProfession, id, name } = props;
-  const { setMovieId } = useRootData((store) => store.movieStore);
 
   return (
     <Link
       className={styles.item}
       to={`/films/${id}`}
-      onClick={() => setMovieId(id)}
+      onClick={() =>
+        localStorage.setItem(MOVIE_ID_LOCALSTORAGE_KEY, JSON.stringify(id))
+      }
     >
       <Typography color="white">{name}</Typography>
       <Typography color="white">{alternativeName}</Typography>

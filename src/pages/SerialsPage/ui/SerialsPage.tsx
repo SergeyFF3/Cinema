@@ -1,6 +1,7 @@
 import { observer } from 'mobx-react';
 import { useEffect } from 'react';
 import { MovieList } from 'src/entities/Movie';
+import { SERIAL_PAGE_NUM_LOCALSTORAGE_KEY } from 'src/shared/const/localstorage';
 import { useRootData } from 'src/shared/lib/hooks/useRootData';
 import { PageLoader } from 'src/widgets/PageLoader';
 import { Pagination } from 'src/widgets/Pagination';
@@ -12,13 +13,19 @@ const SerialsPage = observer(() => {
     page,
     pages,
     isLoadingSerials,
+    setSerialPageNumber,
     getSerialsList,
     changePageHandler,
   } = useRootData((store) => store.serialsStore);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    getSerialsList(page, 30);
+
+    const pageNumber =
+      Number(localStorage.getItem(SERIAL_PAGE_NUM_LOCALSTORAGE_KEY)) || 1;
+    setSerialPageNumber(pageNumber);
+
+    getSerialsList(pageNumber, 30);
   }, [page]);
 
   if (isLoadingSerials) {
