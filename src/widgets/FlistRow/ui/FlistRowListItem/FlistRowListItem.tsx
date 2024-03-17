@@ -1,19 +1,18 @@
 import { Typography } from '@mui/material';
-import { observer } from 'mobx-react';
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { useRootData } from 'src/shared/lib/hooks/useRootData';
+import { SEARCH_RESULT_PAGE_QUERY_LOCALSTORAGE_KEY } from 'src/shared/const/localstorage';
+import { setDataInLocalStorage } from 'src/shared/lib/setDataInLocalStorage';
 import styles from './FlistRowListItem.module.css';
 
-type FlistNameType = 'Год выхода' | 'Страна' | 'Категории' | 'Профессия';
+type FlistNameType = 'Год выхода' | 'Страна' | 'Категории';
 
 type FilstTextMapper = Record<FlistNameType, string>;
 
 const flistTextMapper: FilstTextMapper = {
-  'Год выхода': '&year=',
-  Страна: '&countries.name=',
-  Категории: '&genres.name=',
-  Профессия: '&persons.profession=',
+  'Год выхода': 'year=',
+  Страна: 'countries.name=',
+  Категории: 'genres.name=',
 };
 
 interface IFlistRowProps {
@@ -21,31 +20,23 @@ interface IFlistRowProps {
   name: number | string;
 }
 
-export const FlistRowListItem: FC<IFlistRowProps> = observer(
-  ({ value, name }) => {
-    const { searchMovieByQuery } = useRootData(
-      (store) => store.searchMovieStore,
+export const FlistRowListItem: FC<IFlistRowProps> = ({ value, name }) => {
+  if (name === 'Год выхода' || name === 'Страна' || name === 'Категории') {
+    return (
+      <Link
+        className={styles.item}
+        to="/search-result"
+        onClick={() =>
+          setDataInLocalStorage(
+            SEARCH_RESULT_PAGE_QUERY_LOCALSTORAGE_KEY,
+            flistTextMapper[name] + `${value}`,
+          )
+        }
+      >
+        <Typography color="primary">{value}</Typography>
+      </Link>
     );
+  }
 
-    if (
-      name === 'Год выхода' ||
-      name === 'Страна' ||
-      name === 'Категории' ||
-      name === 'Профессия'
-    ) {
-      return (
-        <Link
-          className={styles.item}
-          to="/search-result"
-          onClick={() =>
-            searchMovieByQuery(`${flistTextMapper[name]}${value}`, 1)
-          }
-        >
-          <Typography color="primary">{value}</Typography>
-        </Link>
-      );
-    }
-
-    return <Typography color="white">{value}</Typography>;
-  },
-);
+  return <Typography color="white">{value}</Typography>;
+};

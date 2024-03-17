@@ -11,19 +11,11 @@ interface IFlistRowProps {
 
 export const FlistRowList: FC<IFlistRowProps> = ({ name, value }) => (
   <ul className={styles.list}>
-    {value.map((item, index) => {
+    {value.map((item) => {
       return 'name' in item ? (
-        <FlistRowListItem
-          key={item.name}
-          name={name}
-          value={index < value.length - 1 ? `${item.name},` : item.name}
-        />
+        <FlistRowListItem key={item.name} name={name} value={item.name} />
       ) : (
-        <FlistRowListItem
-          key={item.value}
-          name={name}
-          value={index < value.length - 1 ? `${item.value}, ` : item.value}
-        />
+        <FlistRowListItem key={item.value} name={name} value={item.value} />
       );
     })}
   </ul>

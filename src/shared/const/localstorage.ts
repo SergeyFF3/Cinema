@@ -8,4 +8,6 @@ export const FILM_PAGE_NUM_LOCALSTORAGE_KEY = 'filmPageNum';
 
 export const SERIAL_PAGE_NUM_LOCALSTORAGE_KEY = 'serialPageNum';
 
-export const SEARCH_RESULT_PAGE_NUM_LOCALSTORAGE_KEY = 'searchResultPageNum';
+export const SEARCH_RESULT_PAGE_NUM_LOCALSTORAGE_KEY = 'searchPageNumPage';
+
+export const SEARCH_RESULT_PAGE_QUERY_LOCALSTORAGE_KEY = 'searchPageQuery';

@@ -19,11 +19,25 @@ interface IMovieListItemProps {
 export const MovieListItem: FC<IMovieListItemProps> = observer(
   ({ category, movie }) => {
     const { setMovieId } = useRootData((store) => store.movieStore);
+    const kinopoisk =
+      movie.rating &&
+      movie.rating.kp !== undefined &&
+      movie.rating.kp !== null &&
+      movie.rating.kp > 0 &&
+      movie.rating.kp;
+
+    const imdb =
+      movie.rating &&
+      movie.rating.kp !== undefined &&
+      movie.rating.kp !== null &&
+      movie.rating.kp > 0 &&
+      movie.rating.kp;
 
     const redirectOnMoviePage = () => {
       setMovieId(movie.id);
       setDataInLocalStorage(MOVIE_ID_LOCALSTORAGE_KEY, movie.id);
     };
+
     return (
       <li>
         <Link to={`/${category}/${movie.id}`} onClick={redirectOnMoviePage}>
@@ -43,14 +57,14 @@ export const MovieListItem: FC<IMovieListItemProps> = observer(
                   {movie.name}
                 </Typography>
                 <div className={styles.rating}>
-                  {movie?.rating?.kp && (
+                  {kinopoisk && (
                     <MovieRating
                       name="кп"
                       rating={movie.rating.kp}
                       color="#f60"
                     />
                   )}
-                  {movie?.rating?.imdb && (
+                  {imdb && (
                     <MovieRating
                       name="imdb"
                       rating={movie.rating.imdb}
