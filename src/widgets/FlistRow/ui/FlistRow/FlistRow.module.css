@@ -5,15 +5,6 @@
   margin-bottom: 10px;
 }
 
-.list {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.item {
-  margin-right: 5px;
-}
-
 @media (max-width: 420px) {
   .label {
     grid-template-columns: 1fr 1fr;

@@ -5,13 +5,18 @@ import { searchMovieService } from '../services/searchMovieService';
 
 export class searchMovieStore {
   searchResult: IMovieProps[] = [];
+  queryParams: string = '';
   page: number = 1;
   pages: number = 0;
-  isLoading: boolean = true;
+  isLoadingSearchPage: boolean = true;
 
   constructor() {
     makeAutoObservable(this);
   }
+
+  turnOnIsLoading = () => {
+    this.isLoadingSearchPage = true;
+  };
 
   setFirstPage = () => {
     this.page = 1;
@@ -21,8 +26,8 @@ export class searchMovieStore {
     this.page = num;
   };
 
-  turnOnIsLoading = () => {
-    this.isLoading = true;
+  setSearchQueryParams = (query: string) => {
+    this.queryParams = query;
   };
 
   changePageHandler = (num: number) => {
@@ -34,12 +39,21 @@ export class searchMovieStore {
   };
 
   searchMovieByName = (name: string, pageNumber: number) => {
-    this.isLoading = true;
+    this.isLoadingSearchPage = true;
     searchMovieService
-      .searchMovieRequestService(name, pageNumber)
+      .searchMovieByNameRequestService(name, pageNumber)
       .then((res) => ((this.searchResult = res.docs), (this.pages = res.pages)))
       .catch((e) => console.log(e))
-      .finally(() => (this.isLoading = false));
+      .finally(() => (this.isLoadingSearchPage = false));
+  };
+
+  searchMovieByQuery = (query: string, pageNumber: number) => {
+    this.isLoadingSearchPage = true;
+    searchMovieService
+      .searchMovieByQueryRequestService(query, pageNumber)
+      .then((res) => ((this.searchResult = res.docs), (this.pages = res.pages)))
+      .catch((e) => console.log(e))
+      .finally(() => (this.isLoadingSearchPage = false));
   };
 }
 

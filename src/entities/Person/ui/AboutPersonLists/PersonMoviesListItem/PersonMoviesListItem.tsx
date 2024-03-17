@@ -2,6 +2,7 @@ import { Typography } from '@mui/material';
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { MOVIE_ID_LOCALSTORAGE_KEY } from 'src/shared/const/localstorage';
+import { setDataInLocalStorage } from 'src/shared/lib/setDataInLocalStorage';
 import { EnProfessionsType, IPersonMovie } from '../../../model/types/person';
 import styles from './PersonMoviesListItem.module.css';
 
@@ -34,12 +35,10 @@ export const PersonMoviesListItem: FC<IPersonMovie> = (props) => {
     <Link
       className={styles.item}
       to={`/films/${id}`}
-      onClick={() =>
-        localStorage.setItem(MOVIE_ID_LOCALSTORAGE_KEY, JSON.stringify(id))
-      }
+      onClick={() => setDataInLocalStorage(MOVIE_ID_LOCALSTORAGE_KEY, id)}
     >
       <Typography color="black">{name}</Typography>
-      <Typography color="white">{alternativeName}</Typography>
+      <Typography color="gray">{alternativeName}</Typography>
       <Typography color="white">{description}</Typography>
       <Typography color="white">{textMapper[enProfession]}</Typography>
     </Link>

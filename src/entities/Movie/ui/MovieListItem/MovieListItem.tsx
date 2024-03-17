@@ -4,6 +4,7 @@ import { observer } from 'mobx-react';
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { MOVIE_ID_LOCALSTORAGE_KEY } from 'src/shared/const/localstorage';
+import { useRootData } from 'src/shared/lib/hooks/useRootData';
 import { setDataInLocalStorage } from 'src/shared/lib/setDataInLocalStorage';
 import { IMovieProps } from 'src/shared/types';
 import { MovieRating } from 'src/shared/ui/MovieRating';
@@ -17,13 +18,15 @@ interface IMovieListItemProps {
 
 export const MovieListItem: FC<IMovieListItemProps> = observer(
   ({ category, movie }) => {
+    const { setMovieId } = useRootData((store) => store.movieStore);
+
+    const redirectOnMoviePage = () => {
+      setMovieId(movie.id);
+      setDataInLocalStorage(MOVIE_ID_LOCALSTORAGE_KEY, movie.id);
+    };
     return (
-      <li
-        onClick={() =>
-          setDataInLocalStorage(MOVIE_ID_LOCALSTORAGE_KEY, movie.id)
-        }
-      >
-        <Link to={`/${category}/${movie.id}`}>
+      <li>
+        <Link to={`/${category}/${movie.id}`} onClick={redirectOnMoviePage}>
           <div className={styles.wrapper}>
             <div className={styles.imageWrapper}>
               <img
@@ -40,16 +43,20 @@ export const MovieListItem: FC<IMovieListItemProps> = observer(
                   {movie.name}
                 </Typography>
                 <div className={styles.rating}>
-                  <MovieRating
-                    name="кп"
-                    rating={movie.rating.kp}
-                    color="#f60"
-                  />
-                  <MovieRating
-                    name="imdb"
-                    rating={movie.rating.imdb}
-                    color="#fc0"
-                  />
+                  {movie?.rating?.kp && (
+                    <MovieRating
+                      name="кп"
+                      rating={movie.rating.kp}
+                      color="#f60"
+                    />
+                  )}
+                  {movie?.rating?.imdb && (
+                    <MovieRating
+                      name="imdb"
+                      rating={movie.rating.imdb}
+                      color="#fc0"
+                    />
+                  )}
                 </div>
               </div>
             </div>

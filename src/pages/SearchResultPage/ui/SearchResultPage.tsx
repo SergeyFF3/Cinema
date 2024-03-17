@@ -13,7 +13,7 @@ const SearchResultPage = observer(() => {
     searchResult,
     page,
     pages,
-    isLoading,
+    isLoadingSearchPage,
     setSearchResultPageNumber,
     changePageHandler,
     searchMovieByName,
@@ -31,7 +31,7 @@ const SearchResultPage = observer(() => {
     searchMovieByName(newSearchValue, pageNumber);
   }, [newSearchValue, page]);
 
-  if (isLoading) {
+  if (isLoadingSearchPage) {
     return <PageLoader />;
   }
 

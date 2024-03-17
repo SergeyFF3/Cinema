@@ -2,7 +2,7 @@ import { observer } from 'mobx-react';
 import styles from './MoviePage.module.css';
 import { useRootData } from 'src/shared/lib/hooks/useRootData';
 import { VideoPlayer } from 'src/widgets/VideoPlayer';
-import { AboutMovie } from 'src/entities/Movie';
+import { AboutMovie, MovieList } from 'src/entities/Movie';
 import { useEffect } from 'react';
 import { Typography } from '@mui/material';
 import { PageLoader } from 'src/widgets/PageLoader';
@@ -12,7 +12,7 @@ import { getDataFromLocalStorage } from 'src/shared/lib/getDataFromLocalStorage'
 import { MOVIE_ID_LOCALSTORAGE_KEY } from 'src/shared/const/localstorage';
 
 const MoviePage = observer(() => {
-  const { movieData, isLoadingMoviePage, getMovieById } = useRootData(
+  const { movieId, movieData, isLoadingMoviePage, getMovieById } = useRootData(
     (store) => store.movieStore,
   );
 
@@ -34,12 +34,14 @@ const MoviePage = observer(() => {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    const movieId = Number(getDataFromLocalStorage(MOVIE_ID_LOCALSTORAGE_KEY));
+    const movieIdLS = Number(
+      getDataFromLocalStorage(MOVIE_ID_LOCALSTORAGE_KEY),
+    );
 
-    if (movieId) {
-      getMovieById(movieId);
+    if (movieIdLS) {
+      getMovieById(movieIdLS);
     }
-  }, []);
+  }, [movieId]);
 
   if (isLoadingMoviePage) {
     return <PageLoader />;
@@ -58,6 +60,11 @@ const MoviePage = observer(() => {
       <Section title="Актеры">
         <PersonList persons={movieData.persons} />
       </Section>
+      {movieData.similarMovies && movieData.similarMovies.length > 0 && (
+        <Section title="Смотрите также">
+          <MovieList movieList={movieData.similarMovies} category="films" />
+        </Section>
+      )}
     </div>
   );
 });

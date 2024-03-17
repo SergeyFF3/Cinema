@@ -1,11 +1,11 @@
 import { Typography } from '@mui/material';
 import { FC } from 'react';
-import { FlistRow } from 'src/shared/ui/FlistRow';
 import styles from './AboutPerson.module.css';
 import { IPersonProps } from '../../model/types/person';
 import { Section } from 'src/shared/ui/Section';
 import { PersonFactsList } from '../AboutPersonLists/PersonFactsList';
 import { PersonMoviesList } from '../AboutPersonLists/PersonMoviesList';
+import { FlistRow } from 'src/widgets/FlistRow';
 
 export const AboutPerson: FC<IPersonProps> = (props) => {
   const { age, birthday, enName, facts, movies, name, photo, profession, sex } =

@@ -7,12 +7,13 @@ import {
 import { ArrowDropDown } from '@mui/icons-material';
 import { FC } from 'react';
 import { IMovieProps, Statuses } from 'src/shared/types';
-import { FlistRow } from 'src/shared/ui/FlistRow';
+
 import { MovieRating } from 'src/shared/ui/MovieRating';
 import styles from './AboutMovie.module.css';
 import { Year } from 'src/shared/ui/Year';
 import useResize from 'src/shared/hooks/useResize';
 import { CinemaList } from 'src/entities/Cinema';
+import { FlistRow } from 'src/widgets/FlistRow';
 
 type TextMapper = Record<Statuses, string>;
 
@@ -81,7 +82,7 @@ export const AboutMovie: FC<IMovieProps> = (props) => {
           value={ageRating && `${ageRating}+`}
         />
         <FlistRow name="Категории" value={genres} />
-        {isSeries && <FlistRow name="Статус" value={currentStatus} />}
+        {isSeries && <FlistRow name="Статус сериала" value={currentStatus} />}
         {watchability.items && watchability.items.length > 0 && (
           <Accordion>
             <AccordionSummary expandIcon={<ArrowDropDown />}>

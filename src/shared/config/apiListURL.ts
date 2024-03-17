@@ -10,4 +10,6 @@ export const getAllSerialsURL = `${baseUrl}/movie?type=tv-series`;
 
 export const getAllCartoonURL = `${baseUrl}/movie?type=cartoon`;
 
-export const getMovieBySearchURL = `${baseUrl}/movie/search`;
+export const getMovieBySearchNameURL = `${baseUrl}/movie/search`;
+
+export const getMovieBySearchURL = `${baseUrl}/movie`;

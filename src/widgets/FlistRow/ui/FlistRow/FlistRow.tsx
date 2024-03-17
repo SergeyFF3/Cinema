@@ -2,6 +2,8 @@ import { Typography } from '@mui/material';
 import { FC } from 'react';
 import { IOnlyValueProp } from 'src/entities/Person';
 import { IOnlyNames } from 'src/shared/types';
+import { FlistRowList } from '../FlistRowList';
+import { FlistRowListItem } from '../FlistRowListItem';
 import styles from './FlistRow.module.css';
 
 interface IFlistRowProps {
@@ -17,18 +19,7 @@ export const FlistRow: FC<IFlistRowProps> = ({ name, value }) => {
           <Typography color="gray">{name}:</Typography>
         </div>
         <div className={styles.column}>
-          <ul className={styles.list}>
-            {value.map((item, index) => (
-              <li key={index} className={styles.item}>
-                <Typography color="white">
-                  {typeof item === 'object' && 'name' in item
-                    ? item.name
-                    : item.value}
-                  {index < value.length - 1 && ','}
-                </Typography>
-              </li>
-            ))}
-          </ul>
+          <FlistRowList name={name} value={value} />
         </div>
       </div>
     );
@@ -41,7 +32,7 @@ export const FlistRow: FC<IFlistRowProps> = ({ name, value }) => {
           <Typography color="gray">{name}:</Typography>
         </div>
         <div className={styles.column}>
-          <Typography color="white">{value}</Typography>
+          <FlistRowListItem name={name} value={value} />
         </div>
       </div>
     );
