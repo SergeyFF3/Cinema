@@ -8,4 +8,17 @@
   justify-content: center;
   height: 100%;
   text-align: center;
+  transition: 0.2s ease-in-out;
+}
+
+.item:hover {
+  background-color: white;
+}
+
+.item p {
+  transition: 0.2s ease-in-out;
+}
+
+.item:hover p {
+  color: #ea80fc;
 }

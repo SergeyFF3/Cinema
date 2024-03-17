@@ -14,11 +14,13 @@ export const FlistRowList: FC<IFlistRowProps> = ({ name, value }) => (
     {value.map((item, index) => {
       return 'name' in item ? (
         <FlistRowListItem
+          key={item.name}
           name={name}
           value={index < value.length - 1 ? `${item.name},` : item.name}
         />
       ) : (
         <FlistRowListItem
+          key={item.value}
           name={name}
           value={index < value.length - 1 ? `${item.value}, ` : item.value}
         />

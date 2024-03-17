@@ -1,3 +1,11 @@
 .item {
   margin-right: 5px;
 }
+
+.item p {
+  transition: 0.2s ease-in-out;
+}
+
+.item p:hover {
+  color: white;
+}
