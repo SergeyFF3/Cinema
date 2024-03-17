@@ -32,6 +32,10 @@ const SerialsPage = observer(() => {
     return <PageLoader />;
   }
 
+  if (!serialsList || serialsList.length === 0) {
+    return null;
+  }
+
   return (
     <div className={styles.wrapper}>
       <MovieList movieList={serialsList} category="films" />

@@ -1,7 +1,6 @@
 import { observer } from 'mobx-react';
 import { useEffect } from 'react';
 import { MovieList } from 'src/entities/Movie';
-import { NotFoundPage } from 'src/pages/NotFoundPage';
 import { useRootData } from 'src/shared/lib/hooks/useRootData';
 import { Section } from 'src/shared/ui/Section';
 import { PageLoader } from 'src/widgets/PageLoader';
@@ -46,7 +45,7 @@ const MainPage = observer(() => {
   }
 
   if (!filmsSection && !serialsSection && !cartoonsSection) {
-    return <NotFoundPage />;
+    return null;
   }
 
   return (

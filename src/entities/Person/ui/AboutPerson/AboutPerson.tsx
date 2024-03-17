@@ -2,7 +2,6 @@ import { Typography } from '@mui/material';
 import { FC } from 'react';
 import { FlistRow } from 'src/shared/ui/FlistRow';
 import styles from './AboutPerson.module.css';
-import useResize from 'src/shared/hooks/useResize';
 import { IPersonProps } from '../../model/types/person';
 import { Section } from 'src/shared/ui/Section';
 import { PersonFactsList } from '../AboutPersonLists/PersonFactsList';

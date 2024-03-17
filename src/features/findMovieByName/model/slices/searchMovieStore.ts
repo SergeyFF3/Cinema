@@ -37,13 +37,7 @@ export class searchMovieStore {
     this.isLoading = true;
     searchMovieService
       .searchMovieRequestService(name, pageNumber)
-      .then(
-        (res) => (
-          (this.searchResult = res.docs),
-          (this.page = res.page),
-          (this.pages = res.pages)
-        ),
-      )
+      .then((res) => ((this.searchResult = res.docs), (this.pages = res.pages)))
       .catch((e) => console.log(e))
       .finally(() => (this.isLoading = false));
   };

@@ -1,7 +1,6 @@
 import { observer } from 'mobx-react';
 import { useEffect } from 'react';
 import { AboutPerson } from 'src/entities/Person';
-import { NotFoundPage } from 'src/pages/NotFoundPage';
 import { PERSON_ID_LOCALSTORAGE_KEY } from 'src/shared/const/localstorage';
 import { getDataFromLocalStorage } from 'src/shared/lib/getDataFromLocalStorage';
 import { useRootData } from 'src/shared/lib/hooks/useRootData';
@@ -29,7 +28,7 @@ const PersonPage = observer(() => {
   }
 
   if (!personData) {
-    return <NotFoundPage />;
+    return null;
   }
 
   return (
