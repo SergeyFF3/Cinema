@@ -38,7 +38,7 @@ export const PersonMoviesListItem: FC<IPersonMovie> = (props) => {
         localStorage.setItem(MOVIE_ID_LOCALSTORAGE_KEY, JSON.stringify(id))
       }
     >
-      <Typography color="white">{name}</Typography>
+      <Typography color="black">{name}</Typography>
       <Typography color="white">{alternativeName}</Typography>
       <Typography color="white">{description}</Typography>
       <Typography color="white">{textMapper[enProfession]}</Typography>
