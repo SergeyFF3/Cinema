@@ -9,7 +9,9 @@ import { setDataInLocalStorage } from 'src/shared/lib/setDataInLocalStorage';
 import { IMovieProps } from 'src/shared/types';
 import { MovieRating } from 'src/shared/ui/MovieRating';
 import { Year } from 'src/shared/ui/Year';
+import FilmNotFound from 'src/shared/assets/images/film-not-found.png';
 import styles from './MovieListItem.module.css';
+import { MyImage } from 'src/widgets/MyImage';
 
 interface IMovieListItemProps {
   movie: IMovieProps;
@@ -43,11 +45,11 @@ export const MovieListItem: FC<IMovieListItemProps> = observer(
         <Link to={`/${category}/${movie.id}`} onClick={redirectOnMoviePage}>
           <div className={styles.wrapper}>
             <div className={styles.imageWrapper}>
-              <img
-                className={styles.image}
+              <MyImage
                 src={movie.poster.previewUrl}
+                placeholderSrc={FilmNotFound}
+                className={styles.image}
                 alt={movie.name}
-                loading="lazy"
               />
             </div>
             <div className={styles.content}>

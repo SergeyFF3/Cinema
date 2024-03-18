@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 import { Typography } from '@mui/material';
 import { PageLoader } from 'src/widgets/PageLoader';
 import { PersonList } from 'src/entities/Person';
-import { Section } from 'src/shared/ui/Section';
+import { Section } from 'src/widgets/Section';
 import { getDataFromLocalStorage } from 'src/shared/lib/getDataFromLocalStorage';
 import { MOVIE_ID_LOCALSTORAGE_KEY } from 'src/shared/const/localstorage';
 
@@ -20,7 +20,9 @@ const MoviePage = observer(() => {
 
   const trailerBlock =
     trailers && trailers.length > 0 ? (
-      <VideoPlayer trailers={trailers} />
+      <div className={styles.videoWrapper}>
+        <VideoPlayer trailers={trailers} />
+      </div>
     ) : (
       <Typography
         fontSize="20px"

@@ -6,6 +6,8 @@ import { PERSON_ID_LOCALSTORAGE_KEY } from 'src/shared/const/localstorage';
 import { setDataInLocalStorage } from 'src/shared/lib/setDataInLocalStorage';
 import { IPerson } from 'src/shared/types';
 import styles from './PersonListItem.module.css';
+import { MyImage } from 'src/widgets/MyImage';
+import PersonImage from 'src/shared/assets/images/person.png';
 
 export const PersonListItem: FC<IPerson> = observer((props) => {
   const { id, description, enName, name, photo } = props;
@@ -16,7 +18,12 @@ export const PersonListItem: FC<IPerson> = observer((props) => {
       to={`/person/${id}`}
       onClick={() => setDataInLocalStorage(PERSON_ID_LOCALSTORAGE_KEY, id)}
     >
-      <img className={styles.image} src={photo} />
+      <MyImage
+        src={photo}
+        placeholderSrc={PersonImage}
+        className={styles.image}
+        alt={name}
+      />
       <Typography color="white" textAlign="center">
         {name}
       </Typography>

@@ -2,10 +2,12 @@ import { Typography } from '@mui/material';
 import { FC } from 'react';
 import styles from './AboutPerson.module.css';
 import { IPersonProps } from '../../model/types/person';
-import { Section } from 'src/shared/ui/Section';
+import { Section } from 'src/widgets/Section';
 import { PersonFactsList } from '../AboutPersonLists/PersonFactsList';
 import { PersonMoviesList } from '../AboutPersonLists/PersonMoviesList';
 import { FlistRow } from 'src/widgets/FlistRow';
+import { MyImage } from 'src/widgets/MyImage';
+import PersonImage from 'src/shared/assets/images/person.png';
 
 export const AboutPerson: FC<IPersonProps> = (props) => {
   const { age, birthday, enName, facts, movies, name, photo, profession, sex } =
@@ -23,7 +25,12 @@ export const AboutPerson: FC<IPersonProps> = (props) => {
     <div className={styles.wrapper}>
       <div className={styles.column}>
         <div className={styles.image}>
-          <img src={photo} alt={name} />
+          <MyImage
+            src={photo}
+            placeholderSrc={PersonImage}
+            className={styles.image}
+            alt={name}
+          />
         </div>
       </div>
       <div className={styles.column}>

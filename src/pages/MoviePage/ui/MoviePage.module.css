@@ -5,3 +5,21 @@
 .margin {
   margin-bottom: 50px;
 }
+
+.videoWrapper {
+  height: 500px;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .videoWrapper {
+    height: 350px;
+  }
+}
+
+@media (max-width: 700px) {
+  .videoWrapper {
+    width: 100%;
+    min-height: 300px;
+  }
+}

@@ -14,6 +14,8 @@ import { Year } from 'src/shared/ui/Year';
 import useResize from 'src/shared/hooks/useResize';
 import { CinemaList } from 'src/entities/Cinema';
 import { FlistRow } from 'src/widgets/FlistRow';
+import { MyImage } from 'src/widgets/MyImage';
+import FilmNotFound from 'src/shared/assets/images/film-not-found.png';
 
 type TextMapper = Record<Statuses, string>;
 
@@ -49,7 +51,12 @@ export const AboutMovie: FC<IMovieProps> = (props) => {
     <section className={styles.wrapper}>
       <div className={styles.column}>
         <div className={styles.image}>
-          <img src={poster.url} alt={name} />
+          <MyImage
+            src={poster.url}
+            placeholderSrc={FilmNotFound}
+            className={styles.image}
+            alt={name}
+          />
           <Year year={year} />
         </div>
       </div>

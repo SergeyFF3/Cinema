@@ -2,7 +2,7 @@ import { observer } from 'mobx-react';
 import { useEffect } from 'react';
 import { MovieList } from 'src/entities/Movie';
 import { useRootData } from 'src/shared/lib/hooks/useRootData';
-import { Section } from 'src/shared/ui/Section';
+import { Section } from 'src/widgets/Section';
 import { PageLoader } from 'src/widgets/PageLoader';
 
 const MainPage = observer(() => {
