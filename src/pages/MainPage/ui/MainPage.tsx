@@ -58,11 +58,11 @@ const MainPage = observer(() => {
   }
 
   return (
-    <>
+    <main>
       {getSection('Фильмы', filmsList)}
       {getSection('Сериалы', serialsList)}
       {getSection('Мультфильмы', cartoonsList)}
-    </>
+    </main>
   );
 });
 

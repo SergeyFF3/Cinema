@@ -1,20 +1,20 @@
 import { FC } from 'react';
+import { configSwiperMoviePage } from 'src/shared/const/swiper';
 import { IPerson } from 'src/shared/types';
+import { SwiperAction } from 'src/widgets/SwiperAction';
+import { SwiperSlide } from 'swiper/react';
 import { PersonListItem } from '../PersonListItem';
-import styles from './PersonList.module.css';
 
-export const PersonList: FC<{ persons: IPerson[] }> = ({ persons }) => {
-  const filteredPersons: IPerson[] = persons.filter(
-    (person, index) => person.enProfession === 'actor' && index < 8,
-  );
-
-  return (
-    <ul className={styles.menu}>
-      {filteredPersons.map((person) => (
-        <li key={person.id}>
-          <PersonListItem {...person} />
-        </li>
+export const PersonList: FC<{ persons: IPerson[] }> = ({ persons }) => (
+  <SwiperAction config={configSwiperMoviePage}>
+    <ul>
+      {persons.map((person, index) => (
+        <SwiperSlide key={index}>
+          <li key={person.id}>
+            <PersonListItem {...person} />
+          </li>
+        </SwiperSlide>
       ))}
     </ul>
-  );
-};
+  </SwiperAction>
+);

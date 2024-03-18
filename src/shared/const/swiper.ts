@@ -18,3 +18,27 @@ export const configSwiperMainPage: SwiperProps = {
     },
   },
 };
+
+export const configSwiperMoviePage: SwiperProps = {
+  speed: 500,
+  spaceBetween: 10,
+  slidesPerView: 2,
+  modules: [Navigation],
+  breakpoints: {
+    '900': {
+      slidesPerView: 7,
+    },
+    '700': {
+      slidesPerView: 5,
+    },
+    '500': {
+      slidesPerView: 4,
+    },
+    '400': {
+      slidesPerView: 3,
+    },
+    '300': {
+      slidesPerView: 2,
+    },
+  },
+};

@@ -1,0 +1,1 @@
+export { SwiperAction } from './SwiperAction';
