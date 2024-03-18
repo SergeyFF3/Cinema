@@ -11,21 +11,25 @@
   transition: 0.2s ease-in-out;
 }
 
-.item:hover {
-  background-color: white;
-}
-
 .item p {
   transition: 0.2s ease-in-out;
 }
 
 @media (hover: hover) {
+  .item:focus {
+    background-color: white;
+  }
+
   .item:hover p {
     color: #ea80fc;
   }
 }
 
 @media (hover: none) {
+  .item:focus {
+    background-color: white;
+  }
+
   .item:focus p {
     color: #ea80fc;
   }
