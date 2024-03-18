@@ -61,7 +61,7 @@ const SearchResultPage = observer(() => {
 
   return (
     <div className={styles.wrapper}>
-      <MovieList movieList={searchResult} category="search-result" />
+      <MovieList movieList={searchResult} />
       <div className={styles.pagination}>
         <Pagination
           page={page}

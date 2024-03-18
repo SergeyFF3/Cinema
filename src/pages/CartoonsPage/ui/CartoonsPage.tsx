@@ -39,7 +39,7 @@ const CartoonsPage = observer(() => {
 
   return (
     <div className={styles.wrapper}>
-      <MovieList movieList={cartoonsList} category="films" />
+      <MovieList movieList={cartoonsList} />
       <div className={styles.pagination}>
         <Pagination
           page={page}
