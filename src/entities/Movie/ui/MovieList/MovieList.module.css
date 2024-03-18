@@ -16,7 +16,7 @@
 }
 
 @media (hover: none) {
-  .wrapper > li:not(:hover) {
+  .wrapper:focus > li:not(:hover) {
     opacity: 0.5;
   }
 }
