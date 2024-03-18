@@ -64,6 +64,13 @@
   }
 }
 
+@media (hover: none) {
+  .wrapper:focus > .play {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
 @media (max-width: 900px) {
   .wrapper {
     height: 300px;
