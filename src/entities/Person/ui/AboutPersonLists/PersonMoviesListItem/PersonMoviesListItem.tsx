@@ -34,7 +34,7 @@ export const PersonMoviesListItem: FC<IPersonMovie> = (props) => {
   return (
     <Link
       className={styles.item}
-      to={`/films/${id}`}
+      to={`/movie/${id}`}
       onClick={() => setDataInLocalStorage(MOVIE_ID_LOCALSTORAGE_KEY, id)}
     >
       <Typography color="black">{name}</Typography>

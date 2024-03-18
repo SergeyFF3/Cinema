@@ -42,7 +42,7 @@ export const MovieListItem: FC<IMovieListItemProps> = observer(
 
     return (
       <li>
-        <Link to={`/${category}/${movie.id}`} onClick={redirectOnMoviePage}>
+        <Link to={`/movie/${movie.id}`} onClick={redirectOnMoviePage}>
           <div className={styles.wrapper}>
             <div className={styles.imageWrapper}>
               <MyImage
