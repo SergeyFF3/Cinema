@@ -9,8 +9,16 @@
   transition: 0.3s ease;
 }
 
-.wrapper:hover > li:not(:hover) {
-  opacity: 0.5;
+@media (hover: hover) {
+  .wrapper:hover > li:not(:hover) {
+    opacity: 0.5;
+  }
+}
+
+@media (hover: none) {
+  .wrapper:active > li:not(:hover) {
+    opacity: 0.5;
+  }
 }
 
 @media (max-width: 900px) {

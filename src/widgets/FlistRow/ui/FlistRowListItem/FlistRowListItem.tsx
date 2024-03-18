@@ -38,5 +38,9 @@ export const FlistRowListItem: FC<IFlistRowProps> = ({ value, name }) => {
     );
   }
 
-  return <Typography color="white">{value}</Typography>;
+  return (
+    <Typography color="white" marginRight="5px">
+      {value}
+    </Typography>
+  );
 };
