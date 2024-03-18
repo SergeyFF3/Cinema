@@ -19,6 +19,14 @@
   transition: 0.2s ease-in-out;
 }
 
-.item:hover p {
-  color: #ea80fc;
+@media (hover: hover) {
+  .item:hover p {
+    color: #ea80fc;
+  }
+}
+
+@media (hover: none) {
+  .item:focus p {
+    color: #ea80fc;
+  }
 }

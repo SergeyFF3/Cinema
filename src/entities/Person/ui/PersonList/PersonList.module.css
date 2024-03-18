@@ -10,6 +10,14 @@
   transition: 0.3s ease;
 }
 
-.menu:hover > li:not(:hover) {
-  opacity: 0.5;
+@media (hover: hover) {
+  .menu:hover > li:not(:hover) {
+    opacity: 0.5;
+  }
+}
+
+@media (hover: none) {
+  .menu:focus > li:not(:hover) {
+    opacity: 0.5;
+  }
 }
