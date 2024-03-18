@@ -15,71 +15,78 @@ import { MyImage } from 'src/widgets/MyImage';
 
 interface IMovieListItemProps {
   movie: IMovieProps;
-  category: string;
+  isSwiper?: boolean;
 }
 
-export const MovieListItem: FC<IMovieListItemProps> = observer(({ movie }) => {
-  const { setMovieId } = useRootData((store) => store.movieStore);
-  const kinopoisk =
-    movie.rating &&
-    movie.rating.kp !== undefined &&
-    movie.rating.kp !== null &&
-    movie.rating.kp > 0 &&
-    movie.rating.kp;
+export const MovieListItem: FC<IMovieListItemProps> = observer(
+  ({ movie, isSwiper }) => {
+    const { setMovieId } = useRootData((store) => store.movieStore);
 
-  const imdb =
-    movie.rating &&
-    movie.rating.kp !== undefined &&
-    movie.rating.kp !== null &&
-    movie.rating.kp > 0 &&
-    movie.rating.kp;
+    const kinopoisk =
+      movie.rating &&
+      movie.rating.kp !== undefined &&
+      movie.rating.kp !== null &&
+      movie.rating.kp > 0 &&
+      movie.rating.kp;
 
-  const redirectOnMoviePage = () => {
-    setMovieId(movie.id);
-    setDataInLocalStorage(MOVIE_ID_LOCALSTORAGE_KEY, movie.id);
-  };
+    const imdb =
+      movie.rating &&
+      movie.rating.kp !== undefined &&
+      movie.rating.kp !== null &&
+      movie.rating.kp > 0 &&
+      movie.rating.kp;
 
-  return (
-    <li>
-      <Link to={`/movie/${movie.id}`} onClick={redirectOnMoviePage}>
-        <div className={styles.wrapper}>
-          <div className={styles.imageWrapper}>
-            <MyImage
-              src={movie.poster.previewUrl}
-              placeholderSrc={FilmNotFound}
-              className={styles.image}
-              alt={movie.name}
-            />
-          </div>
-          <div className={styles.content}>
-            <Year year={movie.year} />
-            <div>
-              <Typography fontSize="16px" className={styles.text}>
-                {movie.name}
-              </Typography>
-              <div className={styles.rating}>
-                {kinopoisk && (
-                  <MovieRating
-                    name="кп"
-                    rating={movie.rating.kp}
-                    color="#f60"
-                  />
-                )}
-                {imdb && (
-                  <MovieRating
-                    name="imdb"
-                    rating={movie.rating.imdb}
-                    color="#fc0"
-                  />
-                )}
+    const redirectOnMoviePage = () => {
+      setMovieId(movie.id);
+      setDataInLocalStorage(MOVIE_ID_LOCALSTORAGE_KEY, movie.id);
+    };
+
+    return (
+      <li>
+        <Link to={`/movie/${movie.id}`} onClick={redirectOnMoviePage}>
+          <div
+            className={
+              isSwiper ? `${styles.wrapper} ${styles.slide}` : styles.wrapper
+            }
+          >
+            <div className={styles.imageWrapper}>
+              <MyImage
+                src={movie.poster.previewUrl}
+                placeholderSrc={FilmNotFound}
+                className={styles.image}
+                alt={movie.name}
+              />
+            </div>
+            <div className={styles.content}>
+              <Year year={movie.year} />
+              <div>
+                <Typography fontSize="16px" className={styles.text}>
+                  {movie.name}
+                </Typography>
+                <div className={styles.rating}>
+                  {kinopoisk && (
+                    <MovieRating
+                      name="кп"
+                      rating={movie.rating.kp}
+                      color="#f60"
+                    />
+                  )}
+                  {imdb && (
+                    <MovieRating
+                      name="imdb"
+                      rating={movie.rating.imdb}
+                      color="#fc0"
+                    />
+                  )}
+                </div>
               </div>
             </div>
+            <div className={styles.play}>
+              <PlayCircle sx={{ color: '#ea80fc', fontSize: 50 }} />
+            </div>
           </div>
-          <div className={styles.play}>
-            <PlayCircle sx={{ color: '#ea80fc', fontSize: 50 }} />
-          </div>
-        </div>
-      </Link>
-    </li>
-  );
-});
+        </Link>
+      </li>
+    );
+  },
+);

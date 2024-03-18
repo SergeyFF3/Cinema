@@ -57,6 +57,10 @@
   transition: 0.3s ease;
 }
 
+.slide {
+  height: 220px !important;
+}
+
 @media (hover: hover) {
   .wrapper:hover > .play {
     visibility: visible;
