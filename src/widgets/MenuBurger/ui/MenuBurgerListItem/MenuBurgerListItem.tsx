@@ -6,7 +6,9 @@ import { INavbarItem } from 'src/widgets/Navbar';
 export const MenuBurgerListItem: FC<INavbarItem> = ({ path, text }) => (
   <ListItemButton>
     <Link to={path}>
-      <Typography sx={{ color: 'white' }}>{text}</Typography>
+      <Typography color="white" fontSize="20px">
+        {text}
+      </Typography>
     </Link>
   </ListItemButton>
 );

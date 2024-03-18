@@ -35,3 +35,15 @@
 .closeIconMobile {
   right: 45px;
 }
+
+@media (max-width: 850px) {
+  .iconMobile {
+    height: 50px;
+    width: 40px;
+  }
+
+  .closeIconMobile {
+    right: 48px;
+    padding: 10px;
+  }
+}

@@ -16,5 +16,10 @@
 @media (max-width: 850px) {
   .menuBurger {
     display: block;
+    margin-right: 3px;
+  }
+
+  .menuBurger span svg {
+    transform: scale(1.6);
   }
 }

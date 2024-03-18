@@ -3,6 +3,7 @@ import { observer } from 'mobx-react';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { SearchField } from 'src/features/searchField';
+import useResize from 'src/shared/hooks/useResize';
 import { useRootData } from 'src/shared/lib/hooks/useRootData';
 import { MenuBurger } from 'src/widgets/MenuBurger';
 import { NavbarList } from '../NavbarList';
@@ -10,6 +11,7 @@ import styles from './Navbar.module.css';
 
 export const Navbar = observer(() => {
   const navigate = useNavigate();
+  const [width] = useResize();
   const [visible, setVisible] = useState(true);
   const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset);
 
@@ -49,7 +51,9 @@ export const Navbar = observer(() => {
     <header className={stylesHeader}>
       <div className={styles.wrapper}>
         <Link to="/" className={styles.logo}>
-          <Typography fontSize="20px">Cine[Ma]tthew</Typography>
+          <Typography fontSize={width < 850 ? '24px' : '20px'}>
+            Cine[Ma]tthew
+          </Typography>
         </Link>
         <NavbarList />
         <div className={styles.searchWrapper}>

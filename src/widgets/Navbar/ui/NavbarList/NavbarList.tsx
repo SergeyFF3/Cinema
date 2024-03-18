@@ -4,7 +4,7 @@ import styles from '../Navbar/Navbar.module.css';
 import { NavbarListItem } from '../NavbarListItem';
 
 export const NavbarList: FC = () => (
-  <menu className={styles.menu}>
+  <nav className={styles.menu}>
     <ul className={styles.list}>
       {nvabarListItems.map((item) => (
         <li key={item.path} className={styles.item}>
@@ -12,5 +12,5 @@ export const NavbarList: FC = () => (
         </li>
       ))}
     </ul>
-  </menu>
+  </nav>
 );

@@ -82,7 +82,7 @@ export const SearchField: FC<{ onClose?: () => void }> = observer(
           className={styles.search}
           placeholder="Введите название"
           fullWidth
-          size="small"
+          size={width > 849 ? 'small' : 'medium'}
           value={searchValue}
           onChange={(e) => changeSearchValue(e)}
           onKeyDown={(e) => onKeyDownEnter(e)}

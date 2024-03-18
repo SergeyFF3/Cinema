@@ -63,6 +63,7 @@
 
 @media (max-width: 850px) {
   .wrapper {
+    height: 70px;
     justify-content: space-between;
   }
   .menu {
