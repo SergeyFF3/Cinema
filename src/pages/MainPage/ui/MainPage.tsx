@@ -8,23 +8,9 @@ import useResize from 'src/shared/hooks/useResize';
 import { IMovieProps } from 'src/shared/types';
 
 const MainPage = observer(() => {
-  const { getFilmsList, filmsList, isLoadingFilms } = useRootData(
-    (store) => store.filmsStore,
-  );
-  const { getSerialsList, serialsList, isLoadingSerials } = useRootData(
-    (store) => store.serialsStore,
-  );
-  const { getCartoonsList, cartoonsList, isLoadingCartoons } = useRootData(
-    (store) => store.cartoonsStore,
-  );
-
+  const { categoriesMovies, isLoading, switchIsLoading, getMoviesByCategory } =
+    useRootData((store) => store.moviesListStore);
   const [width] = useResize();
-
-  useEffect(() => {
-    getFilmsList(1, 12);
-    getSerialsList(1, 12);
-    getCartoonsList(1, 12);
-  }, []);
 
   const getSection = (title: string, list: IMovieProps[]) => {
     if (list.length > 0 && width > 850) {
@@ -44,24 +30,50 @@ const MainPage = observer(() => {
     }
   };
 
-  if (isLoadingFilms || isLoadingSerials || isLoadingCartoons) {
-    return <PageLoader />;
-  }
+  const getAllCategoryMovies = async () => {
+    try {
+      switchIsLoading(true);
 
-  if (
-    !filmsList ||
-    (filmsList.length === 0 && !serialsList) ||
-    (serialsList.length === 0 && !cartoonsList) ||
-    cartoonsList.length === 0
-  ) {
-    return null;
+      const results = await Promise.allSettled([
+        getMoviesByCategory('movie'),
+        getMoviesByCategory('tv-series'),
+        getMoviesByCategory('cartoon'),
+      ]);
+
+      results.forEach((result, index) => {
+        if (result.status === 'fulfilled') {
+          const movies = result.value.docs;
+          switch (index) {
+            case 0:
+              categoriesMovies.filmsList = movies;
+              break;
+            case 1:
+              categoriesMovies.seriesList = movies;
+              break;
+            case 2:
+              categoriesMovies.cartoonsList = movies;
+              break;
+          }
+        }
+      });
+    } catch (error) {
+      console.error('Не удалось получить данные', error);
+    }
+  };
+
+  useEffect(() => {
+    getAllCategoryMovies().finally(() => switchIsLoading(false));
+  }, []);
+
+  if (isLoading) {
+    return <PageLoader />;
   }
 
   return (
     <main>
-      {getSection('Фильмы', filmsList)}
-      {getSection('Сериалы', serialsList)}
-      {getSection('Мультфильмы', cartoonsList)}
+      {getSection('Фильмы', categoriesMovies.filmsList)}
+      {getSection('Сериалы', categoriesMovies.seriesList)}
+      {getSection('Мультфильмы', categoriesMovies.cartoonsList)}
     </main>
   );
 });

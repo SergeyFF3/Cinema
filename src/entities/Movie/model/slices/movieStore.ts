@@ -11,8 +11,8 @@ export class movieStore {
     makeAutoObservable(this);
   }
 
-  setMovieId = (id: number) => {
-    this.movieId = id;
+  setMovieId = (id: number | string) => {
+    this.movieId = Number(id);
   };
 
   getMovieById = (id: number) => {

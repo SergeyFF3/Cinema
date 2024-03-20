@@ -1,20 +1,16 @@
 import { makeAutoObservable } from 'mobx';
 import { movieStore } from 'src/entities/Movie';
 import { searchMovieStore } from 'src/features/findMovieByName';
-import { filmsStore } from 'src/pages/FilmsPage';
-import { cartoonsStore } from 'src/pages/CartoonsPage';
-import { serialsStore } from 'src/pages/SerialsPage';
 import searchFieldStore from 'src/features/searchField/model/slices/searchFieldStore';
 import { personStore } from 'src/pages/PersonPage';
+import moviesListStore from 'src/entities/Movie/model/slices/moviesListStore';
 
 export class RootStore {
-  searchFieldStore = new searchFieldStore();
-  filmsStore = new filmsStore();
-  serialsStore = new serialsStore();
-  cartoonsStore = new cartoonsStore();
+  moviesListStore = new moviesListStore();
   movieStore = new movieStore();
-  personStore = new personStore();
   searchMovieStore = new searchMovieStore();
+  searchFieldStore = new searchFieldStore();
+  personStore = new personStore();
 
   constructor() {
     makeAutoObservable(this);
