@@ -3,7 +3,7 @@ import { fetchData } from 'src/shared/config/fetch';
 import { IMovieProps } from 'src/shared/types';
 
 export class movieService {
-  static movieRequestService(id: number): Promise<IMovieProps> {
+  static movieRequestService(id: number | string): Promise<IMovieProps> {
     return fetchData(`${getMovieByIdURL}/${id}`);
   }
 }

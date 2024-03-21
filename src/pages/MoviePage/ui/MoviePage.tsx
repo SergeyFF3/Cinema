@@ -8,15 +8,16 @@ import { Typography } from '@mui/material';
 import { PageLoader } from 'src/widgets/PageLoader';
 import { PersonList } from 'src/entities/Person';
 import { Section } from 'src/widgets/Section';
-import { getDataFromLocalStorage } from 'src/shared/lib/getDataFromLocalStorage';
-import { MOVIE_ID_LOCALSTORAGE_KEY } from 'src/shared/const/localstorage';
+import { useSearchParams } from 'react-router-dom';
 
 const MoviePage = observer(() => {
-  const { movieId, movieData, isLoadingMoviePage, getMovieById } = useRootData(
+  const [searchParams, setSearchParams] = useSearchParams();
+  const { movieData, isLoadingMoviePage, getMovieById } = useRootData(
     (store) => store.movieStore,
   );
 
   const trailers = movieData?.videos?.trailers;
+  const movieId = searchParams.get('movieId') || '';
 
   const trailerBlock =
     trailers && trailers.length > 0 ? (
@@ -36,12 +37,10 @@ const MoviePage = observer(() => {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    const movieIdLS = Number(
-      getDataFromLocalStorage(MOVIE_ID_LOCALSTORAGE_KEY),
-    );
+    setSearchParams({ movieId: movieId });
 
-    if (movieIdLS) {
-      getMovieById(movieIdLS);
+    if (movieId) {
+      getMovieById(movieId);
     }
   }, [movieId]);
 

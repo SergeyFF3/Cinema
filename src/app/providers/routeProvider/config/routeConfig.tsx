@@ -18,9 +18,8 @@ export enum AppRoutes {
 export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.MAIN]: '/',
   [AppRoutes.MOVIES]: '/:params',
-  [AppRoutes.MOVIE]: '/movie/',
+  [AppRoutes.MOVIE]: '/movie',
   [AppRoutes.SEARCH_RESULT]: '/search-result',
-
   [AppRoutes.PERSON]: '/person/',
   [AppRoutes.NOT_FOUND]: '*',
 };
@@ -35,7 +34,7 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
     element: <MoviesListPage />,
   },
   [AppRoutes.MOVIE]: {
-    path: `${RoutePath.movie}:id`,
+    path: `${RoutePath.movie}`,
     element: <MoviePage />,
   },
   [AppRoutes.SEARCH_RESULT]: {

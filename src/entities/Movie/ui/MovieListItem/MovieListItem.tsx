@@ -3,9 +3,6 @@ import { Typography } from '@mui/material';
 import { observer } from 'mobx-react';
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { MOVIE_ID_LOCALSTORAGE_KEY } from 'src/shared/const/localstorage';
-import { useRootData } from 'src/shared/lib/hooks/useRootData';
-import { setDataInLocalStorage } from 'src/shared/lib/setDataInLocalStorage';
 import { IMovieProps } from 'src/shared/types';
 import { MovieRating } from 'src/shared/ui/MovieRating';
 import { Year } from 'src/shared/ui/Year';
@@ -20,8 +17,6 @@ interface IMovieListItemProps {
 
 export const MovieListItem: FC<IMovieListItemProps> = observer(
   ({ movie, isSwiper }) => {
-    const { setMovieId } = useRootData((store) => store.movieStore);
-
     const kinopoisk =
       movie.rating &&
       movie.rating.kp !== undefined &&
@@ -36,14 +31,9 @@ export const MovieListItem: FC<IMovieListItemProps> = observer(
       movie.rating.kp > 0 &&
       movie.rating.kp;
 
-    const redirectOnMoviePage = () => {
-      setMovieId(movie.id);
-      setDataInLocalStorage(MOVIE_ID_LOCALSTORAGE_KEY, movie.id);
-    };
-
     return (
       <li>
-        <Link to={`/movie/${movie.id}`} onClick={redirectOnMoviePage}>
+        <Link to={`/movie?movieId=${movie.id}`}>
           <div
             className={
               isSwiper ? `${styles.wrapper} ${styles.slide}` : styles.wrapper

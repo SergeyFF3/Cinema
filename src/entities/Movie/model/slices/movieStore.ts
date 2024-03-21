@@ -3,7 +3,6 @@ import { IMovieProps } from 'src/shared/types';
 import movieService from '../services/movieService';
 
 export class movieStore {
-  movieId: number = 1;
   movieData: IMovieProps | null = null;
   isLoadingMoviePage: boolean = false;
 
@@ -11,11 +10,7 @@ export class movieStore {
     makeAutoObservable(this);
   }
 
-  setMovieId = (id: number | string) => {
-    this.movieId = Number(id);
-  };
-
-  getMovieById = (id: number) => {
+  getMovieById = (id: number | string) => {
     this.isLoadingMoviePage = true;
     movieService
       .movieRequestService(id)
