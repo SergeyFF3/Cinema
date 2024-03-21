@@ -20,7 +20,7 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.MOVIES]: '/:params',
   [AppRoutes.MOVIE]: '/movie',
   [AppRoutes.SEARCH_RESULT]: '/search-result',
-  [AppRoutes.PERSON]: '/person/',
+  [AppRoutes.PERSON]: '/person',
   [AppRoutes.NOT_FOUND]: '*',
 };
 
@@ -42,7 +42,7 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
     element: <SearchResultPage />,
   },
   [AppRoutes.PERSON]: {
-    path: `${RoutePath.person}:id`,
+    path: `${RoutePath.person}`,
     element: <PersonPage />,
   },
   [AppRoutes.NOT_FOUND]: {

@@ -15,7 +15,7 @@ export const PersonListItem: FC<IPerson> = observer((props) => {
   return (
     <Link
       className={styles.item}
-      to={`/person/${id}`}
+      to={`/person?personId=${id}`}
       onClick={() => setDataInLocalStorage(PERSON_ID_LOCALSTORAGE_KEY, id)}
     >
       <MyImage

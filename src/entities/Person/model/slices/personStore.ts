@@ -10,7 +10,7 @@ export class personStore {
     makeAutoObservable(this);
   }
 
-  getPersonById = (personId: number) => {
+  getPersonById = (personId: number | string) => {
     this.isLoadingPersonPage = true;
     personService
       .personRequestService(personId)

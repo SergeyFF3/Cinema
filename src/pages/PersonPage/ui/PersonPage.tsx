@@ -1,27 +1,26 @@
 import { observer } from 'mobx-react';
 import { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { AboutPerson } from 'src/entities/Person';
-import { PERSON_ID_LOCALSTORAGE_KEY } from 'src/shared/const/localstorage';
-import { getDataFromLocalStorage } from 'src/shared/lib/getDataFromLocalStorage';
 import { useRootData } from 'src/shared/lib/hooks/useRootData';
 import { PageLoader } from 'src/widgets/PageLoader';
 import styles from './PersonPage.module.css';
 
 const PersonPage = observer(() => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const { personData, isLoadingPersonPage, getPersonById } = useRootData(
     (store) => store.personStore,
   );
+  const personId = searchParams.get('personId') || '';
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    const personId = Number(
-      getDataFromLocalStorage(PERSON_ID_LOCALSTORAGE_KEY),
-    );
+    setSearchParams({ personId: personId });
 
     if (personId) {
       getPersonById(personId);
     }
-  }, []);
+  }, [personId]);
 
   if (isLoadingPersonPage) {
     return <PageLoader />;
