@@ -1,11 +1,10 @@
 import { Typography } from '@mui/material';
 import { observer } from 'mobx-react';
 import { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { MovieList } from 'src/entities/Movie';
-import {
-  SEARCH_RESULT_PAGE_NUM_LOCALSTORAGE_KEY,
-  SEARCH_RESULT_PAGE_QUERY_LOCALSTORAGE_KEY,
-} from 'src/shared/const/localstorage';
+import { SEARCH_RESULT_PAGE_QUERY_LOCALSTORAGE_KEY } from 'src/shared/const/localstorage';
+import { getDataFromLocalStorage } from 'src/shared/lib/getDataFromLocalStorage';
 import { useRootData } from 'src/shared/lib/hooks/useRootData';
 import { PageLoader } from 'src/widgets/PageLoader';
 import { Pagination } from 'src/widgets/Pagination';
@@ -14,36 +13,41 @@ import styles from './SearchResultPage.module.css';
 const SearchResultPage = observer(() => {
   const {
     searchResult,
-    page,
     pages,
     isLoadingSearchPage,
-    setSearchResultPageNumber,
-    searchMovieByQuery,
-    changePageHandler,
     searchMovieByName,
+    searchMovieByQuery,
   } = useRootData((store) => store.searchMovieStore);
-  const { newSearchValue } = useRootData((store) => store.searchFieldStore);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  let queryParam = getDataFromLocalStorage(
+    SEARCH_RESULT_PAGE_QUERY_LOCALSTORAGE_KEY,
+  ) as string;
+  queryParam = queryParam?.replace(/["\\]/g, '');
+
+  const movieName = searchParams.get('search') || '';
+  const queryValue = searchParams.get(queryParam || '');
+  const pageNumber = Number(searchParams.get('page')) || 1;
+
+  const сhangePageNumber = (num: number) => {
+    if (movieName) {
+      setSearchParams({ search: movieName, page: String(num) });
+    }
+    if (queryValue) {
+      setSearchParams({ [queryParam]: queryValue, page: String(num) });
+    }
+  };
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    const pageNumber =
-      Number(localStorage.getItem(SEARCH_RESULT_PAGE_NUM_LOCALSTORAGE_KEY)) ||
-      1;
-    setSearchResultPageNumber(pageNumber);
-
-    const queryValue = localStorage
-      .getItem(SEARCH_RESULT_PAGE_QUERY_LOCALSTORAGE_KEY)
-      ?.slice(1, -1);
-
-    if (newSearchValue) {
-      searchMovieByName(newSearchValue, pageNumber);
+    if (movieName) {
+      searchMovieByName(movieName, pageNumber);
     }
-
     if (queryValue) {
-      searchMovieByQuery(queryValue, pageNumber);
+      searchMovieByQuery(`${queryParam}=${queryValue}`, pageNumber);
     }
-  }, [newSearchValue, page]);
+  }, [movieName, queryValue, pageNumber]);
 
   if (isLoadingSearchPage) {
     return <PageLoader />;
@@ -53,7 +57,7 @@ const SearchResultPage = observer(() => {
     return (
       <div className={styles.wrapper}>
         <Typography textAlign="center" fontSize="20px" color="white">
-          К сожалению поиск не дал результатов.
+          К сожалению поиск не дал результатов :(
         </Typography>
       </div>
     );
@@ -64,9 +68,9 @@ const SearchResultPage = observer(() => {
       <MovieList movieList={searchResult} />
       <div className={styles.pagination}>
         <Pagination
-          page={page}
+          page={pageNumber}
           pageCount={pages}
-          onChange={changePageHandler}
+          onChange={сhangePageNumber}
         />
       </div>
     </div>

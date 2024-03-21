@@ -10,9 +10,9 @@ type FlistNameType = 'Год выхода' | 'Страна' | 'Категори�
 type FilstTextMapper = Record<FlistNameType, string>;
 
 const flistTextMapper: FilstTextMapper = {
-  'Год выхода': 'year=',
-  Страна: 'countries.name=',
-  Категории: 'genres.name=',
+  'Год выхода': 'year',
+  Страна: 'countries.name',
+  Категории: 'genres.name',
 };
 
 interface IFlistRowProps {
@@ -25,11 +25,11 @@ export const FlistRowListItem: FC<IFlistRowProps> = ({ value, name }) => {
     return (
       <Link
         className={styles.item}
-        to="/search-result"
+        to={`/search-result?${flistTextMapper[name]}=${value}&page=1`}
         onClick={() =>
           setDataInLocalStorage(
             SEARCH_RESULT_PAGE_QUERY_LOCALSTORAGE_KEY,
-            flistTextMapper[name] + `${value}`,
+            JSON.stringify(flistTextMapper[name]),
           )
         }
       >

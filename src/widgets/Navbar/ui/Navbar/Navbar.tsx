@@ -15,11 +15,8 @@ export const Navbar = observer(() => {
   const [visible, setVisible] = useState(true);
   const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset);
 
-  const { searchValue, setNewSearchValue, removeValue } = useRootData(
+  const { searchValue, removeValue } = useRootData(
     (store) => store.searchFieldStore,
-  );
-  const { turnOnIsLoading, setFirstPage } = useRootData(
-    (store) => store.searchMovieStore,
   );
 
   const stylesHeader = visible
@@ -28,11 +25,8 @@ export const Navbar = observer(() => {
 
   const redirectToSearchPage = () => {
     if (searchValue) {
-      turnOnIsLoading();
-      setNewSearchValue(searchValue);
       removeValue();
-      setFirstPage();
-      navigate('/search-result');
+      navigate(`/search-result?search=${searchValue}&page=1`);
     }
   };
 

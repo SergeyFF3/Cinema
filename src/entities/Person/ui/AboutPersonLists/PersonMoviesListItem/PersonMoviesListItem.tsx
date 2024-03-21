@@ -1,8 +1,6 @@
 import { Typography } from '@mui/material';
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { MOVIE_ID_LOCALSTORAGE_KEY } from 'src/shared/const/localstorage';
-import { setDataInLocalStorage } from 'src/shared/lib/setDataInLocalStorage';
 import { EnProfessionsType, IPersonMovie } from '../../../model/types/person';
 import styles from './PersonMoviesListItem.module.css';
 
@@ -32,11 +30,7 @@ export const PersonMoviesListItem: FC<IPersonMovie> = (props) => {
   const { alternativeName, description, enProfession, id, name } = props;
 
   return (
-    <Link
-      className={styles.item}
-      to={`/movie/${id}`}
-      onClick={() => setDataInLocalStorage(MOVIE_ID_LOCALSTORAGE_KEY, id)}
-    >
+    <Link className={styles.item} to={`/movie?movieId=${id}`}>
       <Typography color="black">{name}</Typography>
       <Typography color="gray">{alternativeName}</Typography>
       <Typography color="white">{description}</Typography>

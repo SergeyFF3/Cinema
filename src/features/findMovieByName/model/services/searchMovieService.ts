@@ -1,5 +1,5 @@
 import {
-  getMovieBySearchNameURL,
+  getMovieByNameURL,
   getMoviesListURL,
 } from 'src/shared/config/apiListURL';
 import { fetchData } from 'src/shared/config/fetch';
@@ -11,7 +11,7 @@ export class searchMovieService {
     pageNumber: number,
   ): Promise<IMovieList> {
     return fetchData(
-      `${getMovieBySearchNameURL}?query=${name}&page=${pageNumber}&limit=30`,
+      `${getMovieByNameURL}?query=${name}&page=${pageNumber}&limit=30`,
     );
   }
 
@@ -20,7 +20,7 @@ export class searchMovieService {
     pageNumber: number,
   ): Promise<IMovieList> {
     return fetchData(
-      `${getMoviesListURL}?${query}&page=${pageNumber}&limit=30&`,
+      `${getMoviesListURL}?${query}&page=${pageNumber}&limit=30`,
     );
   }
 }

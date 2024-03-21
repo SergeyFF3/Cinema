@@ -11,18 +11,13 @@ export const SearchField: FC<{ onClose?: () => void }> = observer(
   ({ onClose }) => {
     const [width] = useResize();
     const navigate = useNavigate();
-    const { setFirstPage, turnOnIsLoading } = useRootData(
-      (store) => store.searchMovieStore,
-    );
     const { searchValue, setNewSearchValue, changeSearchValue, removeValue } =
       useRootData((store) => store.searchFieldStore);
 
     const searchResultHandler = () => {
-      turnOnIsLoading();
       setNewSearchValue(searchValue);
-      setFirstPage();
       removeValue();
-      navigate('/search-result');
+      navigate(`/search-result?search=${searchValue}&page=1`);
 
       if (onClose) {
         onClose();

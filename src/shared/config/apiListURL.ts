@@ -6,4 +6,4 @@ export const getMovieByIdURL = `${baseUrl}/movie`;
 
 export const getPersonByIdURL = `${baseUrl}/person`;
 
-export const getMovieBySearchNameURL = `${baseUrl}/movie/search`;
+export const getMovieByNameURL = `${baseUrl}/movie/search`;
