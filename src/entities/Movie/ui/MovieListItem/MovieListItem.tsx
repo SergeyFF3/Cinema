@@ -41,7 +41,7 @@ export const MovieListItem: FC<IMovieListItemProps> = observer(
           >
             <div className={styles.imageWrapper}>
               <MyImage
-                src={movie.poster.previewUrl}
+                src={movie?.poster?.previewUrl}
                 placeholderSrc={FilmNotFound}
                 className={styles.image}
                 alt={movie.name}

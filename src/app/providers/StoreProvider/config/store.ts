@@ -4,6 +4,7 @@ import { searchMovieStore } from 'src/features/findMovieByName';
 import searchFieldStore from 'src/features/searchField/model/slices/searchFieldStore';
 import moviesListStore from 'src/entities/Movie/model/slices/moviesListStore';
 import { personStore } from 'src/entities/Person';
+import { filtersStore } from 'src/features/ModalWithFilters';
 
 export class RootStore {
   moviesListStore = new moviesListStore();
@@ -11,6 +12,7 @@ export class RootStore {
   searchFieldStore = new searchFieldStore();
   movieStore = new movieStore();
   personStore = new personStore();
+  filtersStore = new filtersStore();
 
   constructor() {
     makeAutoObservable(this);

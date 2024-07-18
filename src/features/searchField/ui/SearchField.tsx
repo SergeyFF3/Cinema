@@ -11,11 +11,11 @@ export const SearchField: FC<{ onClose?: () => void }> = observer(
   ({ onClose }) => {
     const [width] = useResize();
     const navigate = useNavigate();
-    const { searchValue, setNewSearchValue, changeSearchValue, removeValue } =
-      useRootData((store) => store.searchFieldStore);
+    const { searchValue, changeSearchValue, removeValue } = useRootData(
+      (store) => store.searchFieldStore,
+    );
 
     const searchResultHandler = () => {
-      setNewSearchValue(searchValue);
       removeValue();
       navigate(`/search-result?search=${searchValue}&page=1`);
 
@@ -73,8 +73,8 @@ export const SearchField: FC<{ onClose?: () => void }> = observer(
     return (
       <div className={styles.wrapper}>
         <TextField
-          type="text"
           className={styles.search}
+          type="text"
           placeholder="Введите название"
           fullWidth
           size={width > 849 ? 'small' : 'medium'}
