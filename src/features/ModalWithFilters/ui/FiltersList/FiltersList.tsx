@@ -25,7 +25,7 @@ const MenuProps = {
 
 interface IFiltersList {
   filters: string[];
-  category: string;
+  category: 'Тип' | 'Страна' | 'Жанр' | 'Год';
 }
 
 export const FiltersList: FC<IFiltersList> = observer(
@@ -58,7 +58,7 @@ export const FiltersList: FC<IFiltersList> = observer(
             multiple
             label={category}
             onChange={handleChange}
-            value={filterMapper}
+            value={currentFilters[filterMapper[category]] || []}
             renderValue={(selected) => (
               <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
                 {selected.map((value) => (

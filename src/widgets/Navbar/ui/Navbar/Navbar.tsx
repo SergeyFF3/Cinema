@@ -5,7 +5,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { SearchField } from 'src/features/searchField';
 import useResize from 'src/shared/hooks/useResize';
 import { useRootData } from 'src/shared/lib/hooks/useRootData';
-import { Filters } from 'src/features/ModalWithFilters';
 import { MenuBurger } from 'src/widgets/MenuBurger';
 import { NavbarList } from '../NavbarList';
 import styles from './Navbar.module.css';
@@ -51,7 +50,6 @@ export const Navbar = observer(() => {
           </Typography>
         </Link>
         <NavbarList />
-        {/* <Filters /> */}
         <div className={styles.searchWrapper}>
           <SearchField />
         </div>
