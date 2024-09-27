@@ -44,20 +44,32 @@ export const AboutMovie: FC<IMovieProps> = (props) => {
   } = props;
 
   const [width] = useResize();
-  const movieTitle = `${name} (${year}) смотреть онлайн`;
+  const movieYear = year ? ` (${year})` : '';
   const currentStatus = textMapper[status];
+  const movieRating = { ...rating };
+  const movieAgeRating = ageRating ? `${ageRating}+` : '-';
+
+  const movieTitle = name
+    ? `${name}${movieYear} смотреть онлайн`
+    : 'Название отсутствует';
+
+  const movieDescription = description ? (
+    <Typography color="white">{description}</Typography>
+  ) : (
+    <Typography color="white">Описание отсутствует</Typography>
+  );
 
   return (
     <section className={styles.wrapper}>
       <div className={styles.column}>
         <div className={styles.image}>
           <MyImage
-            src={poster.url}
+            src={poster?.url}
             placeholderSrc={FilmNotFound}
             className={styles.image}
             alt={name}
           />
-          <Year year={year} />
+          {year && <Year year={year} />}
         </div>
       </div>
       <div className={styles.column}>
@@ -70,27 +82,32 @@ export const AboutMovie: FC<IMovieProps> = (props) => {
             {movieTitle}
           </Typography>
         )}
-        <div className={styles.description}>
-          <Typography color="white">{description}</Typography>
-        </div>
+
+        <div className={styles.description}>{movieDescription}</div>
+
         <div className={styles.rating}>
           <span style={{ display: 'flex' }}>
             <span style={{ marginRight: '5px' }}>
-              <MovieRating name="кп" rating={rating.kp} color="#f60" />
+              {movieRating && movieRating.kp > 0 && (
+                <MovieRating name="кп" rating={movieRating.kp} color="#f60" />
+              )}
             </span>
-            <MovieRating name="imdb" rating={rating.imdb} color="#fc0" />
+            {movieRating && movieRating.imdb > 0 && (
+              <MovieRating name="imdb" rating={movieRating.imdb} color="#fc0" />
+            )}
           </span>
         </div>
-        <FlistRow name="Год выхода" value={year} />
-        <FlistRow name="Страна" value={countries} />
-        <FlistRow name="Оригинальное название" value={alternativeName} />
-        <FlistRow
-          name="Рекомендуемый возраст"
-          value={ageRating && `${ageRating}+`}
-        />
-        <FlistRow name="Категории" value={genres} />
-        {isSeries && <FlistRow name="Статус сериала" value={currentStatus} />}
-        {watchability.items && watchability.items.length > 0 && (
+
+        <FlistRow name="Год выхода" value={year || '-'} />
+        <FlistRow name="Страна" value={countries || '-'} />
+        <FlistRow name="Оригинальное название" value={alternativeName || '-'} />
+        <FlistRow name="Рекомендуемый возраст" value={movieAgeRating} />
+        <FlistRow name="Категории" value={genres || '-'} />
+        {isSeries && currentStatus && (
+          <FlistRow name="Статус сериала" value={currentStatus} />
+        )}
+
+        {Boolean(watchability?.items.length) && (
           <Accordion>
             <AccordionSummary expandIcon={<ArrowDropDown />}>
               <Typography>Где смотреть</Typography>

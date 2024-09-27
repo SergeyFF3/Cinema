@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { FC } from 'react';
 import styles from './AboutPerson.module.css';
 import { IPersonProps } from '../../model/types/person';
@@ -26,7 +26,7 @@ export const AboutPerson: FC<IPersonProps> = (props) => {
       <div className={styles.column}>
         <div className={styles.image}>
           <MyImage
-            src={photo}
+            src={photo || ''}
             placeholderSrc={PersonImage}
             className={styles.image}
             alt={name}
@@ -34,26 +34,23 @@ export const AboutPerson: FC<IPersonProps> = (props) => {
         </div>
       </div>
       <div className={styles.column}>
-        {name && (
-          <Typography fontSize="20px" color="white" textAlign="center">
-            {name}
-          </Typography>
-        )}
-        {enName && (
-          <Typography
-            fontSize="20px"
-            color="gray"
-            textAlign="center"
-            marginBottom="20px"
-          >
-            {enName}
-          </Typography>
-        )}
+        <Box marginBottom="20px">
+          {name && (
+            <Typography fontSize="20px" color="white" textAlign="center">
+              {name}
+            </Typography>
+          )}
+          {enName && (
+            <Typography fontSize="20px" color="gray" textAlign="center">
+              {enName}
+            </Typography>
+          )}
+        </Box>
         <div className={styles.description}>
-          <FlistRow name="День рождения" value={formattedDate} />
-          <FlistRow name="Возраст" value={age} />
-          <FlistRow name="Пол" value={sex} />
-          <FlistRow name="Профессия" value={profession} />
+          <FlistRow name="День рождения" value={formattedDate || '-'} />
+          <FlistRow name="Возраст" value={age || '-'} />
+          <FlistRow name="Пол" value={sex || '-'} />
+          <FlistRow name="Профессия" value={profession || '-'} />
         </div>
         {facts && facts.length > 0 && (
           <Section title="Интересные факты">

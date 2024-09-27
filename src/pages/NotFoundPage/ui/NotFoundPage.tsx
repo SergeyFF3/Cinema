@@ -11,15 +11,15 @@ const NotFoundPage = () => {
   return (
     <div className={styles.wrapper}>
       <Typography fontSize="20px" color="white" textAlign="center">
-        Упс, что-то пошло не так.
-        <br /> Попробуйте обновить страницу :)
+        Упс, что-то пошло не так{' '}
+        <span style={{ whiteSpace: 'nowrap' }}>:(</span>
       </Typography>
       <Button
         sx={{ width: 'max-content', marginTop: '30px' }}
         variant="contained"
         onClick={handleNavigate}
       >
-        <Typography>обновить</Typography>
+        <Typography>на главную</Typography>
       </Button>
     </div>
   );

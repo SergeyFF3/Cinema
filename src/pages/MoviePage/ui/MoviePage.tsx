@@ -58,9 +58,11 @@ const MoviePage = observer(() => {
         <AboutMovie {...movieData} />
       </div>
       {trailerBlock}
-      <Section title="Актеры">
-        <PersonList persons={movieData.persons} />
-      </Section>
+      {movieData.persons && movieData.persons.length > 0 && (
+        <Section title="Актеры">
+          <PersonList persons={movieData.persons} />
+        </Section>
+      )}
       {movieData.similarMovies && movieData.similarMovies.length > 0 && (
         <Section title="Смотрите также">
           <MovieList movieList={movieData.similarMovies} />

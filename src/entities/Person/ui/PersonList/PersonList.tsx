@@ -8,8 +8,8 @@ import { PersonListItem } from '../PersonListItem';
 export const PersonList: FC<{ persons: IPerson[] }> = ({ persons }) => (
   <SwiperAction config={configSwiperMoviePage}>
     <ul>
-      {persons.map((person) => (
-        <li key={person.id}>
+      {persons.map((person, index) => (
+          <li key={`${index}-${person.id}`}>
           <SwiperSlide>
             <PersonListItem {...person} />
           </SwiperSlide>
