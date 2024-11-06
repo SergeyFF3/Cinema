@@ -16,7 +16,3 @@ const AppRouter = () => {
 };
 
 export default AppRouter;
-
-// export default withErrorBoundary(AppRouter, {
-//   FallbackComponent: NotFoundPage,
-// });

@@ -11,22 +11,24 @@ export const PersonListItem: FC<IPerson> = observer((props) => {
   const { id, description, enName, name, photo } = props;
 
   return (
-    <Link className={styles.item} to={`/person?personId=${id}`}>
-      <MyImage
-        src={photo}
-        placeholderSrc={PersonImage}
-        className={styles.image}
-        alt={name}
-      />
-      <Typography color="white" textAlign="center">
-        {name}
-      </Typography>
-      <Typography color="white" textAlign="center">
-        {enName}
-      </Typography>
-      <Typography color="gray" textAlign="center">
-        {description}
-      </Typography>
-    </Link>
+    <li>
+      <Link className={styles.item} to={`/person?personId=${id}`}>
+        <MyImage
+          src={photo}
+          placeholderSrc={PersonImage}
+          className={styles.image}
+          alt={name}
+        />
+        <Typography color="white" textAlign="center">
+          {name}
+        </Typography>
+        <Typography color="white" textAlign="center">
+          {enName}
+        </Typography>
+        <Typography color="gray" textAlign="center">
+          {description}
+        </Typography>
+      </Link>
+    </li>
   );
 });

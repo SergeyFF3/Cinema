@@ -9,11 +9,9 @@ export const PersonList: FC<{ persons: IPerson[] }> = ({ persons }) => (
   <SwiperAction config={configSwiperMoviePage}>
     <ul>
       {persons.map((person, index) => (
-          <li key={`${index}-${person.id}`}>
-          <SwiperSlide>
-            <PersonListItem {...person} />
-          </SwiperSlide>
-        </li>
+        <SwiperSlide key={`${index}-${person.id}`}>
+          <PersonListItem {...person} />
+        </SwiperSlide>
       ))}
     </ul>
   </SwiperAction>

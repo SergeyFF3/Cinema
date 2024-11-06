@@ -1,4 +1,4 @@
-import { FC, ReactNode, useRef } from 'react';
+import { FC, ReactNode, useEffect, useRef } from 'react';
 import { Swiper, SwiperProps } from 'swiper/react';
 import styles from './SwiperAction.module.css';
 import 'swiper/css/navigation';
@@ -13,6 +13,17 @@ interface ISwiperAction {
 export const SwiperAction: FC<ISwiperAction> = ({ children, config }) => {
   const swiperButtonPrevRef = useRef<HTMLButtonElement | null>(null);
   const swiperButtonNextRef = useRef<HTMLButtonElement | null>(null);
+
+  const swiperRef = useRef<any>(null);
+
+  useEffect(() => {
+    if (swiperRef.current) {
+      swiperRef.current.params.navigation.prevEl = swiperButtonPrevRef.current;
+      swiperRef.current.params.navigation.nextEl = swiperButtonNextRef.current;
+
+      swiperRef.current.navigation.update();
+    }
+  }, [swiperButtonPrevRef, swiperButtonNextRef]);
 
   return (
     <Swiper
