@@ -20,7 +20,7 @@
     background-color: white;
   }
 
-  .item:hover p {
+  .item:focus p {
     color: #ea80fc;
   }
 }

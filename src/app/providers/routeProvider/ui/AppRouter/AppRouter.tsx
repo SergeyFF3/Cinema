@@ -1,7 +1,5 @@
 import { Suspense } from 'react';
-import { withErrorBoundary } from 'react-error-boundary';
 import { Route, Routes, RouteProps } from 'react-router-dom';
-import { NotFoundPage } from 'src/pages/NotFoundPage';
 import { PageLoader } from 'src/widgets/PageLoader';
 import { routeConfig } from '../../config/routeConfig';
 
@@ -17,6 +15,8 @@ const AppRouter = () => {
   );
 };
 
-export default withErrorBoundary(AppRouter, {
-  FallbackComponent: NotFoundPage,
-});
+export default AppRouter;
+
+// export default withErrorBoundary(AppRouter, {
+//   FallbackComponent: NotFoundPage,
+// });
