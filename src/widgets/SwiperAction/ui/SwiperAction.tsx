@@ -28,6 +28,7 @@ export const SwiperAction: FC<ISwiperAction> = ({ children, config }) => {
   return (
     <Swiper
       {...config}
+      onSwiper={(swiper) => (swiperRef.current = swiper)}
       navigation={{
         prevEl: swiperButtonPrevRef.current,
         nextEl: swiperButtonNextRef.current,
